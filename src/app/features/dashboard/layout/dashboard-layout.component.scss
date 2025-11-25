@@ -1,9 +1,20 @@
+@use '@angular/material' as mat;
+@use '../../../../theme-colors' as theme;
+
 .sidenav-container {
     height: 100%;
 }
 
 .sidenav {
-    width: 250px;
+    width: 260px;
+    background: linear-gradient(180deg, rgba(0, 121, 107, 0.03) 0%, rgba(38, 166, 154, 0.05) 100%);
+    border-right: 1px solid rgba(0, 121, 107, 0.1);
+    box-shadow: theme.$shadow-sm;
+}
+
+.dark-theme .sidenav {
+    background: linear-gradient(180deg, rgba(0, 121, 107, 0.08) 0%, rgba(38, 166, 154, 0.12) 100%);
+    border-right: 1px solid rgba(38, 166, 154, 0.15);
 }
 
 .sidenav .mat-toolbar {
@@ -14,6 +25,18 @@
     position: sticky;
     top: 0;
     z-index: 1;
+    background: theme.$gradient-primary;
+    box-shadow: theme.$shadow-md;
+
+    &::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+    }
 }
 
 .spacer {
@@ -21,15 +44,120 @@
 }
 
 .content {
-    padding: 20px;
+    padding: 24px;
+    animation: fadeIn 0.4s ease-out;
+}
+
+// Sidebar menu items
+a[mat-list-item] {
+    position: relative;
+    border-radius: 8px;
+    margin: 4px 8px;
+    transition: all theme.$transition-normal ease-in-out;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: theme.$gradient-hover-light;
+        opacity: 0;
+        transition: opacity theme.$transition-normal ease-in-out;
+        z-index: 0;
+    }
+
+    &:hover:not(.active-link) {
+        transform: translateX(4px);
+        background: rgba(0, 121, 107, 0.04);
+
+        &::before {
+            opacity: 1;
+        }
+
+        mat-icon {
+            transform: scale(1.1);
+        }
+    }
+
+    mat-icon {
+        transition: transform theme.$transition-normal ease-in-out;
+    }
+
+    .mdc-list-item__content {
+        position: relative;
+        z-index: 1;
+    }
 }
 
 .active-link {
-    background-color: rgba(0, 0, 0, 0.05);
-    border-left: 4px solid #3f51b5; // Primary color
+    background: theme.$gradient-hover-light;
+    border-left: 4px solid transparent;
+    border-image: theme.$gradient-primary 1;
+    border-image-slice: 1;
+    font-weight: 600;
+    box-shadow: theme.$shadow-sm;
+    animation: slideInLeft 0.3s ease-out;
+
+    mat-icon {
+        color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+        transform: scale(1.1);
+        filter: drop-shadow(0 2px 4px rgba(0, 121, 107, 0.2));
+    }
+
+    .mdc-list-item__primary-text {
+        background: theme.$gradient-primary;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6px;
+        height: 6px;
+        background: theme.$gradient-primary;
+        border-radius: 50%;
+        box-shadow: 0 0 8px theme.$glow-primary;
+        animation: pulse 2s ease-in-out infinite;
+    }
 }
 
-.dark-theme .active-link {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-left: 4px solid #c5cae9; // Lighter primary for dark theme
+.dark-theme {
+    a[mat-list-item] {
+        &::before {
+            background: theme.$gradient-hover-dark;
+        }
+
+        &:hover:not(.active-link) {
+            background: rgba(38, 166, 154, 0.08);
+        }
+    }
+
+    .active-link {
+        background: theme.$gradient-hover-dark;
+        border-image: theme.$gradient-primary-intense 1;
+    }
+}
+
+// Toolbar icons and buttons
+.mat-toolbar {
+    button {
+        transition: all theme.$transition-normal ease-in-out;
+
+        &:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        &:active {
+            transform: scale(0.95);
+        }
+    }
 }

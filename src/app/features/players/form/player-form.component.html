@@ -1,20 +1,23 @@
-<h2 mat-dialog-title>{{ isEditMode ? 'Edit' : 'Create' }} Player</h2>
+<h2 mat-dialog-title>{{ isEditMode ? ('PLAYERS.FORM_TITLE_EDIT' | translate) : ('PLAYERS.FORM_TITLE_ADD' | translate) }}
+</h2>
 <mat-dialog-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Name</mat-label>
+            <mat-label>{{ 'COMMON.NAME' | translate }}</mat-label>
             <input matInput formControlName="name" placeholder="Ex. John Doe">
-            <mat-error *ngIf="form.get('name')?.hasError('required')">Name is required</mat-error>
+            <mat-error *ngIf="form.get('name')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                }}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Role</mat-label>
+            <mat-label>{{ 'PLAYERS.POSITION' | translate }}</mat-label>
             <mat-select formControlName="roleId">
                 <mat-option *ngFor="let role of roles" [value]="role.id">
                     {{ role.name }} ({{ role.acronym }})
                 </mat-option>
             </mat-select>
-            <mat-error *ngIf="form.get('roleId')?.hasError('required')">Role is required</mat-error>
+            <mat-error *ngIf="form.get('roleId')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                }}</mat-error>
         </mat-form-field>
 
         <div class="row">
@@ -30,32 +33,32 @@
         </div>
 
         <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Email</mat-label>
+            <mat-label>{{ 'COMMON.EMAIL' | translate }}</mat-label>
             <input matInput formControlName="email" type="email">
-            <mat-error *ngIf="form.get('email')?.hasError('email')">Invalid email</mat-error>
+            <mat-error *ngIf="form.get('email')?.hasError('email')">{{ 'COMMON.INVALID_EMAIL' | translate }}</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Phone</mat-label>
+            <mat-label>{{ 'COMMON.PHONE' | translate }}</mat-label>
             <input matInput formControlName="phone">
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Birth Date</mat-label>
+            <mat-label>{{ 'PLAYERS.BIRTHDATE' | translate }}</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="birthDate">
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Image Path</mat-label>
+            <mat-label>{{ 'COMMON.IMAGE' | translate }}</mat-label>
             <input matInput formControlName="imagePath">
         </mat-form-field>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close>{{ 'COMMON.CANCEL' | translate }}</button>
     <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="form.invalid || isLoading">
-        {{ isLoading ? 'Saving...' : 'Save' }}
+        {{ isLoading ? ('COMMON.LOADING' | translate) : ('COMMON.SAVE' | translate) }}
     </button>
 </mat-dialog-actions>

@@ -7,11 +7,12 @@ import { MatListModule } from '@angular/material/list';
 import { MatchService } from '../../../core/services/match.service';
 import { EventService } from '../../../core/services/event.service';
 import { MatchDto, EventDto } from '../../../core/models/api-models';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-match-detail',
     standalone: true,
-    imports: [CommonModule, MatCardModule, MatTabsModule, MatListModule],
+    imports: [CommonModule, MatCardModule, MatTabsModule, MatListModule, TranslateModule],
     templateUrl: './match-detail.component.html',
     styleUrls: ['./match-detail.component.scss']
 })

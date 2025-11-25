@@ -11,8 +11,10 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TeamService } from '../../../core/services/team.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { TeamDto } from '../../../core/models/api-models';
 import { TeamFormComponent } from '../form/team-form.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-team-list',
@@ -28,7 +30,8 @@ import { TeamFormComponent } from '../form/team-form.component';
         MatDialogModule,
         MatSnackBarModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        TranslateModule
     ],
     templateUrl: './team-list.component.html',
     styleUrls: ['./team-list.component.scss']
@@ -42,6 +45,7 @@ export class TeamListComponent implements OnInit {
 
     constructor(
         private teamService: TeamService,
+        private authService: AuthService,
         private dialog: MatDialog,
         private snackBar: MatSnackBar
     ) {
@@ -53,7 +57,7 @@ export class TeamListComponent implements OnInit {
     }
 
     loadTeams() {
-        const orgIdStr = localStorage.getItem('skauts_org_id');
+        const orgIdStr = this.authService.getOrgId();
         if (orgIdStr) {
             const orgId = parseInt(orgIdStr, 10);
             this.teamService.getByOrg(orgId).subscribe({

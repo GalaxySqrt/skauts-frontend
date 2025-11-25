@@ -1,0 +1,130 @@
+{
+    "COMMON": {
+        "LOGIN": "Iniciar sesión",
+        "LOGOUT": "Cerrar sesión",
+        "DASHBOARD": "Tablero",
+        "SETTINGS": "Configuraciones",
+        "PROFILE": "Perfil",
+        "LANGUAGE": "Idioma",
+        "THEME": "Tema",
+        "CANCEL": "Cancelar",
+        "SAVE": "Guardar",
+        "DELETE": "Eliminar",
+        "EDIT": "Editar",
+        "ADD": "Añadir",
+        "SEARCH": "Buscar",
+        "ACTIONS": "Acciones",
+        "CREATE_NEW": "Crear Nuevo",
+        "FILTER": "Filtrar",
+        "NAME": "Nombre",
+        "DESCRIPTION": "Descripción",
+        "DATE": "Fecha",
+        "START_DATE": "Fecha de Inicio",
+        "END_DATE": "Fecha de Fin",
+        "TYPE": "Tipo",
+        "STATUS": "Estado",
+        "EMAIL": "Correo electrónico",
+        "PASSWORD": "Contraseña",
+        "PHONE": "Teléfono",
+        "ADDRESS": "Dirección",
+        "CITY": "Ciudad",
+        "COUNTRY": "País",
+        "LOGO": "Logo",
+        "IMAGE": "Imagen",
+        "BACK": "Volver",
+        "SUBMIT": "Enviar",
+        "RESET": "Reiniciar",
+        "CONFIRM": "Confirmar",
+        "YES": "Sí",
+        "NO": "No",
+        "LOADING": "Cargando...",
+        "NO_DATA": "No hay datos que coincidan con el filtro",
+        "REQUIRED_FIELD": "Este campo es obligatorio",
+        "INVALID_EMAIL": "Por favor ingrese un correo electrónico válido",
+        "MIN_LENGTH": "Debe tener al menos {{value}} caracteres",
+        "SEARCH_PLACEHOLDER": "Ej. Buscar..."
+    },
+    "LANGUAGES": {
+        "PT": "Portugués",
+        "EN": "Inglés",
+        "ES": "Español"
+    },
+    "MENU": {
+        "DASHBOARD": "Tablero",
+        "CHAMPIONSHIPS": "Campeonatos",
+        "ORGANIZATIONS": "Organizaciones",
+        "PLAYERS": "Jugadores",
+        "PRIZES": "Premios",
+        "MATCHES": "Partidos",
+        "TEAMS": "Equipos",
+        "EVENT_TYPES": "Tipos de Evento"
+    },
+    "LOGIN": {
+        "TITLE": "Skauts Login",
+        "EMAIL_PLACEHOLDER": "Ej. usuario@ejemplo.com",
+        "BUTTON": "Entrar",
+        "LOGGING_IN": "Entrando..."
+    },
+    "ORG_SELECTION": {
+        "TITLE": "Seleccionar Organización",
+        "SUBTITLE": "Por favor seleccione una organización para continuar",
+        "BUTTON": "Seleccionar"
+    },
+    "CHAMPIONSHIPS": {
+        "TITLE": "Campeonatos",
+        "DETAIL_TITLE": "Detalles del Campeonato",
+        "FORM_TITLE_ADD": "Añadir Campeonato",
+        "FORM_TITLE_EDIT": "Editar Campeonato"
+    },
+    "TEAMS": {
+        "TITLE": "Equipos",
+        "DETAIL_TITLE": "Detalles del Equipo",
+        "FORM_TITLE_ADD": "Añadir Equipo",
+        "FORM_TITLE_EDIT": "Editar Equipo",
+        "FOUNDED": "Fundado",
+        "WEBSITE": "Sitio Web"
+    },
+    "PLAYERS": {
+        "TITLE": "Jugadores",
+        "DETAIL_TITLE": "Detalles del Jugador",
+        "FORM_TITLE_ADD": "Añadir Jugador",
+        "FORM_TITLE_EDIT": "Editar Jugador",
+        "POSITION": "Posición",
+        "NUMBER": "Número",
+        "BIRTHDATE": "Fecha de Nacimiento",
+        "NATIONALITY": "Nacionalidad"
+    },
+    "PRIZES": {
+        "PLAYER": "Jugador",
+        "PRIZE_TYPE": "Tipo de Premio",
+        "RECEIVE_DATE": "Fecha",
+        "ADD_PRIZE": "Añadir Premio",
+        "EDIT_PRIZE": "Editar Premio"
+    },
+    "MATCHES": {
+        "TITLE": "Partidos",
+        "DETAIL_TITLE": "Detalles del Partido",
+        "FORM_TITLE_ADD": "Añadir Partido",
+        "FORM_TITLE_EDIT": "Editar Partido",
+        "HOME_TEAM": "Equipo Local",
+        "AWAY_TEAM": "Equipo Visitante",
+        "SCORE": "Marcador",
+        "LOCATION": "Ubicación",
+        "ROUND": "Ronda",
+        "TEAM_A": "Equipo A",
+        "TEAM_B": "Equipo B"
+    },
+    "ORGANIZATIONS": {
+        "TITLE": "Organizaciones",
+        "DETAIL_TITLE": "Detalles de la Organización",
+        "FORM_TITLE_ADD": "Añadir Organización",
+        "FORM_TITLE_EDIT": "Editar Organización"
+    },
+    "EVENT_TYPES": {
+        "TITLE": "Tipos de Evento",
+        "DETAIL_TITLE": "Detalles del Tipo de Evento",
+        "FORM_TITLE_ADD": "Añadir Tipo de Evento",
+        "FORM_TITLE_EDIT": "Editar Tipo de Evento",
+        "ICON": "Icono"
+    }
+}

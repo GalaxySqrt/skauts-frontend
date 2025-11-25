@@ -1,0 +1,130 @@
+{
+    "COMMON": {
+        "LOGIN": "Entrar",
+        "LOGOUT": "Sair",
+        "DASHBOARD": "Painel",
+        "SETTINGS": "Configurações",
+        "PROFILE": "Perfil",
+        "LANGUAGE": "Idioma",
+        "THEME": "Tema",
+        "CANCEL": "Cancelar",
+        "SAVE": "Salvar",
+        "DELETE": "Excluir",
+        "EDIT": "Editar",
+        "ADD": "Adicionar",
+        "SEARCH": "Buscar",
+        "ACTIONS": "Ações",
+        "CREATE_NEW": "Criar Novo",
+        "FILTER": "Filtrar",
+        "NAME": "Nome",
+        "DESCRIPTION": "Descrição",
+        "DATE": "Data",
+        "START_DATE": "Data de Início",
+        "END_DATE": "Data de Término",
+        "TYPE": "Tipo",
+        "STATUS": "Status",
+        "EMAIL": "E-mail",
+        "PASSWORD": "Senha",
+        "PHONE": "Telefone",
+        "ADDRESS": "Endereço",
+        "CITY": "Cidade",
+        "COUNTRY": "País",
+        "LOGO": "Logo",
+        "IMAGE": "Imagem",
+        "BACK": "Voltar",
+        "SUBMIT": "Enviar",
+        "RESET": "Redefinir",
+        "CONFIRM": "Confirmar",
+        "YES": "Sim",
+        "NO": "Não",
+        "LOADING": "Carregando...",
+        "NO_DATA": "Nenhum dado correspondente ao filtro",
+        "REQUIRED_FIELD": "Este campo é obrigatório",
+        "INVALID_EMAIL": "Por favor, insira um e-mail válido",
+        "MIN_LENGTH": "Deve ter pelo menos {{value}} caracteres",
+        "SEARCH_PLACEHOLDER": "Ex. Buscar..."
+    },
+    "LANGUAGES": {
+        "PT": "Português",
+        "EN": "Inglês",
+        "ES": "Espanhol"
+    },
+    "MENU": {
+        "DASHBOARD": "Painel",
+        "CHAMPIONSHIPS": "Campeonatos",
+        "ORGANIZATIONS": "Organizações",
+        "PLAYERS": "Jogadores",
+        "PRIZES": "Prêmios",
+        "MATCHES": "Partidas",
+        "TEAMS": "Times",
+        "EVENT_TYPES": "Tipos de Evento"
+    },
+    "LOGIN": {
+        "TITLE": "Login Skauts",
+        "EMAIL_PLACEHOLDER": "Ex. usuario@exemplo.com",
+        "BUTTON": "Entrar",
+        "LOGGING_IN": "Entrando..."
+    },
+    "ORG_SELECTION": {
+        "TITLE": "Selecionar Organização",
+        "SUBTITLE": "Por favor, selecione uma organização para continuar",
+        "BUTTON": "Selecionar"
+    },
+    "CHAMPIONSHIPS": {
+        "TITLE": "Campeonatos",
+        "DETAIL_TITLE": "Detalhes do Campeonato",
+        "FORM_TITLE_ADD": "Adicionar Campeonato",
+        "FORM_TITLE_EDIT": "Editar Campeonato"
+    },
+    "TEAMS": {
+        "TITLE": "Times",
+        "DETAIL_TITLE": "Detalhes do Time",
+        "FORM_TITLE_ADD": "Adicionar Time",
+        "FORM_TITLE_EDIT": "Editar Time",
+        "FOUNDED": "Fundado",
+        "WEBSITE": "Site"
+    },
+    "PLAYERS": {
+        "TITLE": "Jogadores",
+        "DETAIL_TITLE": "Detalhes do Jogador",
+        "FORM_TITLE_ADD": "Adicionar Jogador",
+        "FORM_TITLE_EDIT": "Editar Jogador",
+        "POSITION": "Posição",
+        "NUMBER": "Número",
+        "BIRTHDATE": "Data de Nascimento",
+        "NATIONALITY": "Nacionalidade"
+    },
+    "PRIZES": {
+        "PLAYER": "Jogador",
+        "PRIZE_TYPE": "Tipo de Prêmio",
+        "RECEIVE_DATE": "Data",
+        "ADD_PRIZE": "Adicionar Prêmio",
+        "EDIT_PRIZE": "Editar Prêmio"
+    },
+    "MATCHES": {
+        "TITLE": "Partidas",
+        "DETAIL_TITLE": "Detalhes da Partida",
+        "FORM_TITLE_ADD": "Adicionar Partida",
+        "FORM_TITLE_EDIT": "Editar Partida",
+        "HOME_TEAM": "Time da Casa",
+        "AWAY_TEAM": "Time Visitante",
+        "SCORE": "Placar",
+        "LOCATION": "Local",
+        "ROUND": "Rodada",
+        "TEAM_A": "Time A",
+        "TEAM_B": "Time B"
+    },
+    "ORGANIZATIONS": {
+        "TITLE": "Organizações",
+        "DETAIL_TITLE": "Detalhes da Organização",
+        "FORM_TITLE_ADD": "Adicionar Organização",
+        "FORM_TITLE_EDIT": "Editar Organização"
+    },
+    "EVENT_TYPES": {
+        "TITLE": "Tipos de Evento",
+        "DETAIL_TITLE": "Detalhes do Tipo de Evento",
+        "FORM_TITLE_ADD": "Adicionar Tipo de Evento",
+        "FORM_TITLE_EDIT": "Editar Tipo de Evento",
+        "ICON": "Ícone"
+    }
+}

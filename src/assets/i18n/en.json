@@ -1,0 +1,130 @@
+{
+    "COMMON": {
+        "LOGIN": "Login",
+        "LOGOUT": "Logout",
+        "DASHBOARD": "Dashboard",
+        "SETTINGS": "Settings",
+        "PROFILE": "Profile",
+        "LANGUAGE": "Language",
+        "THEME": "Theme",
+        "CANCEL": "Cancel",
+        "SAVE": "Save",
+        "DELETE": "Delete",
+        "EDIT": "Edit",
+        "ADD": "Add",
+        "SEARCH": "Search",
+        "ACTIONS": "Actions",
+        "CREATE_NEW": "Create New",
+        "FILTER": "Filter",
+        "NAME": "Name",
+        "DESCRIPTION": "Description",
+        "DATE": "Date",
+        "START_DATE": "Start Date",
+        "END_DATE": "End Date",
+        "TYPE": "Type",
+        "STATUS": "Status",
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "PHONE": "Phone",
+        "ADDRESS": "Address",
+        "CITY": "City",
+        "COUNTRY": "Country",
+        "LOGO": "Logo",
+        "IMAGE": "Image",
+        "BACK": "Back",
+        "SUBMIT": "Submit",
+        "RESET": "Reset",
+        "CONFIRM": "Confirm",
+        "YES": "Yes",
+        "NO": "No",
+        "LOADING": "Loading...",
+        "NO_DATA": "No data matching the filter",
+        "REQUIRED_FIELD": "This field is required",
+        "INVALID_EMAIL": "Please enter a valid email address",
+        "MIN_LENGTH": "Must be at least {{value}} characters",
+        "SEARCH_PLACEHOLDER": "Ex. Search..."
+    },
+    "LANGUAGES": {
+        "PT": "Portuguese",
+        "EN": "English",
+        "ES": "Spanish"
+    },
+    "MENU": {
+        "DASHBOARD": "Dashboard",
+        "CHAMPIONSHIPS": "Championships",
+        "ORGANIZATIONS": "Organizations",
+        "PLAYERS": "Players",
+        "PRIZES": "Prizes",
+        "MATCHES": "Matches",
+        "TEAMS": "Teams",
+        "EVENT_TYPES": "Event Types"
+    },
+    "LOGIN": {
+        "TITLE": "Skauts Login",
+        "EMAIL_PLACEHOLDER": "Ex. user@example.com",
+        "BUTTON": "Login",
+        "LOGGING_IN": "Logging in..."
+    },
+    "ORG_SELECTION": {
+        "TITLE": "Select Organization",
+        "SUBTITLE": "Please select an organization to continue",
+        "BUTTON": "Select"
+    },
+    "CHAMPIONSHIPS": {
+        "TITLE": "Championships",
+        "DETAIL_TITLE": "Championship Details",
+        "FORM_TITLE_ADD": "Add Championship",
+        "FORM_TITLE_EDIT": "Edit Championship"
+    },
+    "TEAMS": {
+        "TITLE": "Teams",
+        "DETAIL_TITLE": "Team Details",
+        "FORM_TITLE_ADD": "Add Team",
+        "FORM_TITLE_EDIT": "Edit Team",
+        "FOUNDED": "Founded",
+        "WEBSITE": "Website"
+    },
+    "PLAYERS": {
+        "TITLE": "Players",
+        "DETAIL_TITLE": "Player Details",
+        "FORM_TITLE_ADD": "Add Player",
+        "FORM_TITLE_EDIT": "Edit Player",
+        "POSITION": "Position",
+        "NUMBER": "Number",
+        "BIRTHDATE": "Birthdate",
+        "NATIONALITY": "Nationality"
+    },
+    "PRIZES": {
+        "PLAYER": "Player",
+        "PRIZE_TYPE": "Prize Type",
+        "RECEIVE_DATE": "Date",
+        "ADD_PRIZE": "Add Prize",
+        "EDIT_PRIZE": "Edit Prize"
+    },
+    "MATCHES": {
+        "TITLE": "Matches",
+        "DETAIL_TITLE": "Match Details",
+        "FORM_TITLE_ADD": "Add Match",
+        "FORM_TITLE_EDIT": "Edit Match",
+        "HOME_TEAM": "Home Team",
+        "AWAY_TEAM": "Away Team",
+        "SCORE": "Score",
+        "LOCATION": "Location",
+        "ROUND": "Round",
+        "TEAM_A": "Team A",
+        "TEAM_B": "Team B"
+    },
+    "ORGANIZATIONS": {
+        "TITLE": "Organizations",
+        "DETAIL_TITLE": "Organization Details",
+        "FORM_TITLE_ADD": "Add Organization",
+        "FORM_TITLE_EDIT": "Edit Organization"
+    },
+    "EVENT_TYPES": {
+        "TITLE": "Event Types",
+        "DETAIL_TITLE": "Event Type Details",
+        "FORM_TITLE_ADD": "Add Event Type",
+        "FORM_TITLE_EDIT": "Edit Event Type",
+        "ICON": "Icon"
+    }
+}

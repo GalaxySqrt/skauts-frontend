@@ -11,8 +11,10 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ChampionshipService } from '../../../core/services/championship.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { ChampionshipDto } from '../../../core/models/api-models';
 import { ChampionshipFormComponent } from '../form/championship-form.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-championship-list',
@@ -28,7 +30,8 @@ import { ChampionshipFormComponent } from '../form/championship-form.component';
         MatDialogModule,
         MatSnackBarModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        TranslateModule
     ],
     templateUrl: './championship-list.component.html',
     styleUrls: ['./championship-list.component.scss']
@@ -42,6 +45,7 @@ export class ChampionshipListComponent implements OnInit {
 
     constructor(
         private championshipService: ChampionshipService,
+        private authService: AuthService,
         private dialog: MatDialog,
         private snackBar: MatSnackBar
     ) {
@@ -53,7 +57,7 @@ export class ChampionshipListComponent implements OnInit {
     }
 
     loadChampionships() {
-        const orgIdStr = localStorage.getItem('skauts_org_id');
+        const orgIdStr = this.authService.getOrgId();
         if (orgIdStr) {
             const orgId = parseInt(orgIdStr, 10);
             this.championshipService.getByOrg(orgId).subscribe({

@@ -8,7 +8,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { ChampionshipService } from '../../../core/services/championship.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { ChampionshipDto } from '../../../core/models/api-models';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-championship-form',
@@ -21,7 +23,8 @@ import { ChampionshipDto } from '../../../core/models/api-models';
         MatInputModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        MatButtonModule
+        MatButtonModule,
+        TranslateModule
     ],
     templateUrl: './championship-form.component.html',
     styleUrls: ['./championship-form.component.scss']
@@ -34,6 +37,7 @@ export class ChampionshipFormComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private championshipService: ChampionshipService,
+        private authService: AuthService,
         public dialogRef: MatDialogRef<ChampionshipFormComponent>,
         @Inject(MAT_DIALOG_DATA) public data: ChampionshipDto | null
     ) {
@@ -59,7 +63,7 @@ export class ChampionshipFormComponent implements OnInit {
         if (this.form.invalid) return;
 
         this.isLoading = true;
-        const orgIdStr = localStorage.getItem('skauts_org_id');
+        const orgIdStr = this.authService.getOrgId();
         if (!orgIdStr) {
             console.error('No organization selected');
             this.isLoading = false;

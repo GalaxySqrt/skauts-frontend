@@ -1,16 +1,18 @@
-<h2 mat-dialog-title>{{ isEditMode ? 'Edit' : 'Create' }} Event Type</h2>
+<h2 mat-dialog-title>{{ isEditMode ? ('EVENT_TYPES.FORM_TITLE_EDIT' | translate) : ('EVENT_TYPES.FORM_TITLE_ADD' |
+    translate) }}</h2>
 <mat-dialog-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Name</mat-label>
-            <input matInput formControlName="name" placeholder="Ex. Goal">
-            <mat-error *ngIf="form.get('name')?.hasError('required')">Name is required</mat-error>
+            <mat-label>{{ 'COMMON.NAME' | translate }}</mat-label>
+            <input matInput formControlName="name" [placeholder]="'EVENT_TYPES.NAME_PLACEHOLDER' | translate">
+            <mat-error *ngIf="form.get('name')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                }}</mat-error>
         </mat-form-field>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close>{{ 'COMMON.CANCEL' | translate }}</button>
     <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="form.invalid || isLoading">
-        {{ isLoading ? 'Saving...' : 'Save' }}
+        {{ isLoading ? ('COMMON.LOADING' | translate) : ('COMMON.SAVE' | translate) }}
     </button>
 </mat-dialog-actions>

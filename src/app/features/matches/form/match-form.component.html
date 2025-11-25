@@ -1,48 +1,53 @@
-<h2 mat-dialog-title>{{ isEditMode ? 'Edit' : 'Create' }} Match</h2>
+<h2 mat-dialog-title>{{ isEditMode ? ('MATCHES.FORM_TITLE_EDIT' | translate) : ('MATCHES.FORM_TITLE_ADD' | translate) }}
+</h2>
 <mat-dialog-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="row">
             <mat-form-field appearance="outline" class="half-width">
-                <mat-label>Team A</mat-label>
+                <mat-label>{{ 'MATCHES.TEAM_A' | translate }}</mat-label>
                 <mat-select formControlName="teamAId">
                     <mat-option *ngFor="let team of teams" [value]="team.id">
                         {{ team.name }}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="form.get('teamAId')?.hasError('required')">Team A is required</mat-error>
+                <mat-error *ngIf="form.get('teamAId')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                    }}</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="half-width">
-                <mat-label>Team B</mat-label>
+                <mat-label>{{ 'MATCHES.TEAM_B' | translate }}</mat-label>
                 <mat-select formControlName="teamBId">
                     <mat-option *ngFor="let team of teams" [value]="team.id">
                         {{ team.name }}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="form.get('teamBId')?.hasError('required')">Team B is required</mat-error>
+                <mat-error *ngIf="form.get('teamBId')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                    }}</mat-error>
             </mat-form-field>
         </div>
 
         <div class="row">
             <mat-form-field appearance="outline" class="half-width">
-                <mat-label>Date</mat-label>
+                <mat-label>{{ 'COMMON.DATE' | translate }}</mat-label>
                 <input matInput [matDatepicker]="picker" formControlName="date">
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
-                <mat-error *ngIf="form.get('date')?.hasError('required')">Date is required</mat-error>
+                <mat-error *ngIf="form.get('date')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                    }}</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="half-width">
-                <mat-label>Time</mat-label>
+                <mat-label>{{ 'MATCHES.TIME' | translate }}</mat-label>
                 <input matInput type="time" formControlName="time">
-                <mat-error *ngIf="form.get('time')?.hasError('required')">Time is required</mat-error>
+                <mat-error *ngIf="form.get('time')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                    }}</mat-error>
             </mat-form-field>
         </div>
 
         <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Championship</mat-label>
+            <mat-label>{{ 'MENU.CHAMPIONSHIPS' | translate }}</mat-label>
             <mat-select formControlName="championshipId">
-                <mat-option [value]="null">None (Friendly)</mat-option>
+                <mat-option [value]="null">{{ 'MATCHES.NONE_FRIENDLY' | translate }}</mat-option>
                 <mat-option *ngFor="let champ of championships" [value]="champ.id">
                     {{ champ.name }}
                 </mat-option>
@@ -51,8 +56,8 @@
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button mat-dialog-close>{{ 'COMMON.CANCEL' | translate }}</button>
     <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="form.invalid || isLoading">
-        {{ isLoading ? 'Saving...' : 'Save' }}
+        {{ isLoading ? ('COMMON.LOADING' | translate) : ('COMMON.SAVE' | translate) }}
     </button>
 </mat-dialog-actions>

@@ -1,28 +1,211 @@
+@use '@angular/material' as mat;
+@use '../../../../theme-colors' as theme;
+
 .list-container {
-    padding: 20px;
+    padding: 24px;
+    animation: fadeIn 0.4s ease-out;
 }
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    padding: 16px;
+    background: theme.$gradient-hover-light;
+    border-radius: 12px;
+    box-shadow: theme.$shadow-sm;
+    animation: fadeInDown 0.5s ease-out;
+
+    h1,
+    h2 {
+        margin: 0;
+        background: theme.$gradient-primary;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 700;
+    }
+
+    button {
+        background: theme.$gradient-primary;
+        color: white;
+        font-weight: 500;
+        border-radius: 24px;
+        padding: 8px 24px;
+        box-shadow: theme.$shadow-md;
+        transition: all theme.$transition-normal ease-in-out;
+
+        &:hover:not(:disabled) {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: theme.$shadow-glow-primary;
+        }
+
+        &:active:not(:disabled) {
+            transform: translateY(0) scale(0.98);
+        }
+
+        mat-icon {
+            transition: transform theme.$transition-fast ease-in-out;
+        }
+
+        &:hover mat-icon {
+            transform: rotate(90deg);
+        }
+    }
+}
+
+.dark-theme .header {
+    background: theme.$gradient-hover-dark;
 }
 
 .filter-field {
     width: 100%;
+    max-width: 400px;
+
+    mat-form-field {
+        transition: all theme.$transition-normal ease-in-out;
+
+        &:focus-within {
+            .mat-mdc-text-field-wrapper {
+                box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.2);
+                border-radius: 4px;
+            }
+        }
+    }
 }
 
 .table-container {
     overflow: auto;
+    border-radius: 12px;
+    box-shadow: theme.$shadow-md;
+    background: white;
+    animation: fadeInUp 0.6s ease-out;
+
+    &::-webkit-scrollbar {
+        height: 8px;
+    }
+}
+
+.dark-theme .table-container {
+    background: rgba(33, 33, 33, 0.8);
 }
 
 table {
     width: 100%;
+
+    thead {
+        tr {
+            background: theme.$gradient-primary;
+
+            th {
+                color: white;
+                font-weight: 600;
+                padding: 16px;
+                border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+                text-transform: uppercase;
+                font-size: 0.85rem;
+                letter-spacing: 0.5px;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            transition: all theme.$transition-normal ease-in-out;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+
+            &:hover {
+                background: theme.$gradient-hover-light;
+                transform: scale(1.01);
+                box-shadow: theme.$shadow-sm;
+                border-left: 4px solid mat.m2-get-color-from-palette(theme.$skauts-primary);
+            }
+
+            td {
+                padding: 16px;
+                transition: all theme.$transition-fast ease-in-out;
+
+                // Action buttons
+                button {
+                    transition: all theme.$transition-normal ease-in-out;
+                    border-radius: 8px;
+
+                    &:hover {
+                        transform: scale(1.1);
+                        box-shadow: theme.$shadow-md;
+                    }
+
+                    &.edit-button:hover {
+                        background: rgba(0, 121, 107, 0.1);
+                        color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+                    }
+
+                    &.delete-button:hover {
+                        background: rgba(244, 67, 54, 0.1);
+                        color: #f44336;
+                    }
+                }
+            }
+        }
+
+        tr:last-child {
+            border-bottom: none;
+        }
+    }
 }
 
+.dark-theme table {
+    tbody tr {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+        &:hover {
+            background: theme.$gradient-hover-dark;
+            border-left-color: mat.m2-get-color-from-palette(theme.$skauts-primary, 300);
+        }
+    }
+}
+
+// Team shield specific styling (for team-list)
 .team-shield {
     width: 40px;
     height: 40px;
     object-fit: contain;
+    border-radius: 8px;
+    box-shadow: theme.$shadow-sm;
+    transition: all theme.$transition-normal ease-in-out;
+
+    &:hover {
+        transform: scale(1.2);
+        box-shadow: theme.$shadow-md;
+    }
+}
+
+// Loading and empty states
+mat-spinner {
+    margin: 40px auto;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    animation: fadeIn 0.5s ease-out;
+
+    mat-icon {
+        font-size: 64px;
+        width: 64px;
+        height: 64px;
+        opacity: 0.3;
+        margin-bottom: 16px;
+    }
+
+    p {
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.1rem;
+    }
+}
+
+.dark-theme .empty-state p {
+    color: rgba(255, 255, 255, 0.5);
 }

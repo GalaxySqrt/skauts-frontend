@@ -5,11 +5,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 import { ChampionshipService } from '../../../core/services/championship.service';
 import { ChampionshipDto } from '../../../core/models/api-models';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-championship-detail',
     standalone: true,
-    imports: [CommonModule, MatCardModule, MatTabsModule],
+    imports: [CommonModule, MatCardModule, MatTabsModule, TranslateModule],
     templateUrl: './championship-detail.component.html',
     styleUrls: ['./championship-detail.component.scss']
 })

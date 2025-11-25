@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { OrganizationService } from '../../../core/services/organization.service';
 import { OrganizationDto } from '../../../core/models/api-models';
 import { OrganizationFormComponent } from '../form/organization-form.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-organization-list',
@@ -28,7 +29,8 @@ import { OrganizationFormComponent } from '../form/organization-form.component';
         MatDialogModule,
         MatSnackBarModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        TranslateModule
     ],
     templateUrl: './organization-list.component.html',
     styleUrls: ['./organization-list.component.scss']

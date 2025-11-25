@@ -11,8 +11,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatchService } from '../../../core/services/match.service';
 import { TeamService } from '../../../core/services/team.service';
 import { ChampionshipService } from '../../../core/services/championship.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { MatchDto, TeamDto, ChampionshipDto } from '../../../core/models/api-models';
 import { forkJoin } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-match-form',
@@ -26,7 +28,8 @@ import { forkJoin } from 'rxjs';
         MatSelectModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        MatButtonModule
+        MatButtonModule,
+        TranslateModule
     ],
     templateUrl: './match-form.component.html',
     styleUrls: ['./match-form.component.scss']
@@ -43,6 +46,7 @@ export class MatchFormComponent implements OnInit {
         private matchService: MatchService,
         private teamService: TeamService,
         private championshipService: ChampionshipService,
+        private authService: AuthService,
         public dialogRef: MatDialogRef<MatchFormComponent>,
         @Inject(MAT_DIALOG_DATA) public data: MatchDto | null
     ) {
@@ -71,7 +75,7 @@ export class MatchFormComponent implements OnInit {
     }
 
     loadDependencies() {
-        const orgIdStr = localStorage.getItem('skauts_org_id');
+        const orgIdStr = this.authService.getOrgId();
         if (orgIdStr) {
             const orgId = parseInt(orgIdStr, 10);
             forkJoin({
@@ -91,7 +95,7 @@ export class MatchFormComponent implements OnInit {
         if (this.form.invalid) return;
 
         this.isLoading = true;
-        const orgIdStr = localStorage.getItem('skauts_org_id');
+        const orgIdStr = this.authService.getOrgId();
         if (!orgIdStr) {
             console.error('No organization selected');
             this.isLoading = false;

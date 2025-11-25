@@ -1,0 +1,12 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" class="language-trigger">
+    <img [src]="getFlag(currentLang$ | async)" class="flag-trigger-img" alt="flag">
+</button>
+
+<mat-menu #menu="matMenu" class="language-menu-panel">
+    <button mat-menu-item *ngFor="let lang of languages" (click)="changeLanguage(lang.code)" class="language-item">
+        <div class="menu-item-content">
+            <img [src]="lang.flag" class="flag-img" alt="flag">
+            <span class="lang-label">{{ lang.label | translate }}</span>
+        </div>
+    </button>
+</mat-menu>

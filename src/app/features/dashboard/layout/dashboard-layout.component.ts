@@ -7,6 +7,8 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageSelectorComponent } from '../../../shared/components/language-selector/language-selector.component';
 import { AuthService } from '../../../core/services/auth.service';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
@@ -23,7 +25,9 @@ import { map, shareReplay } from 'rxjs/operators';
         MatListModule,
         MatIconModule,
         MatButtonModule,
-        MatMenuModule
+        MatMenuModule,
+        LanguageSelectorComponent,
+        TranslateModule
     ],
     templateUrl: './dashboard-layout.component.html',
     styleUrls: ['./dashboard-layout.component.scss']

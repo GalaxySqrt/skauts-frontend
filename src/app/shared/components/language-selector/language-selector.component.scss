@@ -1,0 +1,167 @@
+@use '@angular/material' as mat;
+@use '../../../../theme-colors' as theme;
+
+:host {
+    display: flex;
+    align-items: center;
+}
+
+.language-trigger {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all theme.$transition-normal ease-in-out;
+    position: relative;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: theme.$gradient-hover-light;
+        opacity: 0;
+        transition: opacity theme.$transition-normal ease-in-out;
+        border-radius: 50%;
+    }
+
+    &:hover {
+        transform: scale(1.1);
+        box-shadow: theme.$shadow-md;
+
+        &::before {
+            opacity: 1;
+        }
+
+        .flag-trigger-img {
+            transform: scale(1.05);
+        }
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+.dark-theme .language-trigger {
+    &::before {
+        background: theme.$gradient-hover-dark;
+    }
+}
+
+.flag-trigger-img {
+    width: 26px;
+    height: 20px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: theme.$shadow-sm;
+    transition: all theme.$transition-normal ease-in-out;
+    position: relative;
+    z-index: 1;
+}
+
+/* Global styles for the menu panel */
+::ng-deep .language-menu-panel {
+    min-width: 180px !important;
+    max-width: 280px;
+    background: theme.$gradient-card-light;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 12px;
+    box-shadow: theme.$shadow-xl;
+    border: 1px solid rgba(0, 121, 107, 0.1);
+    overflow: hidden;
+
+    .mat-mdc-menu-content {
+        padding: 8px;
+        background: transparent;
+    }
+
+    .language-item {
+        height: 52px;
+        border-radius: 8px;
+        margin-bottom: 4px;
+        transition: all theme.$transition-normal ease-in-out;
+        position: relative;
+        overflow: hidden;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: theme.$gradient-hover-light;
+            opacity: 0;
+            transition: opacity theme.$transition-normal ease-in-out;
+        }
+
+        &:hover {
+            background: transparent;
+            transform: translateX(4px) scale(1.02);
+            box-shadow: theme.$shadow-sm;
+
+            &::before {
+                opacity: 1;
+            }
+
+            .flag-img {
+                transform: scale(1.1);
+            }
+        }
+
+        .menu-item-content {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+    }
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.dark-theme ::ng-deep .language-menu-panel {
+    background: theme.$gradient-card-dark;
+    border-color: rgba(38, 166, 154, 0.2);
+
+    .language-item {
+        &::before {
+            background: theme.$gradient-hover-dark;
+        }
+    }
+}
+
+.flag-img {
+    width: 28px;
+    height: 21px;
+    object-fit: cover;
+    margin-right: 14px;
+    border-radius: 4px;
+    box-shadow: theme.$shadow-sm;
+    transition: all theme.$transition-normal ease-in-out;
+}
+
+.lang-label {
+    font-size: 16px;
+    font-weight: 500;
+    transition: all theme.$transition-fast ease-in-out;
+}
+
+.language-item:hover .lang-label {
+    background: theme.$gradient-primary;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+}

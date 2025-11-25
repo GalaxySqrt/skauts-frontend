@@ -1,4 +1,111 @@
-.full-width {
-    width: 100%;
-    margin-bottom: 16px;
+@use '@angular/material' as mat;
+@use '../../../../_theme-colors' as theme;
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 24px;
+    min-width: 400px;
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeInUp 0.5s ease-out;
+
+    mat-form-field {
+        width: 100%;
+        transition: all theme.$transition-normal ease-in-out;
+
+        &:focus-within {
+            .mat-mdc-text-field-wrapper {
+                box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.2);
+                border-radius: 4px;
+            }
+        }
+
+        label {
+            transition: color theme.$transition-fast ease-in-out;
+        }
+    }
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+
+    button {
+        min-width: 100px;
+        border-radius: 24px;
+        font-weight: 500;
+        transition: all theme.$transition-normal ease-in-out;
+
+        &[type="submit"] {
+            background: theme.$gradient-primary;
+            color: white;
+            box-shadow: theme.$shadow-md;
+
+            &:hover:not(:disabled) {
+                transform: translateY(-2px) scale(1.05);
+                box-shadow: theme.$shadow-glow-primary;
+            }
+
+            &:active:not(:disabled) {
+                transform: translateY(0) scale(0.98);
+            }
+
+            &:disabled {
+                opacity: 0.6;
+                cursor: not-allowed;
+            }
+        }
+
+        &[type="button"] {
+            background: transparent;
+            border: 2px solid rgba(0, 121, 107, 0.3);
+            color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+
+            &:hover:not(:disabled) {
+                background: rgba(0, 121, 107, 0.05);
+                border-color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+                transform: scale(1.05);
+            }
+        }
+    }
+}
+
+.dark-theme .form-actions {
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+// Error messages with shake animation
+mat-error {
+    animation: shake 0.5s ease-in-out;
+    color: #f44336;
+    font-weight: 500;
+}
+
+// Loading state
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    animation: fadeIn 0.3s ease-out;
+
+    mat-spinner {
+        margin: 0 auto;
+    }
+}
+
+.dark-theme .loading-overlay {
+    background: rgba(0, 0, 0, 0.8);
 }

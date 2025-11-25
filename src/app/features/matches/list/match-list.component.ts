@@ -13,9 +13,11 @@ import { MatInputModule } from '@angular/material/input';
 import { MatchService } from '../../../core/services/match.service';
 import { TeamService } from '../../../core/services/team.service';
 import { ChampionshipService } from '../../../core/services/championship.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { MatchDto } from '../../../core/models/api-models';
 import { MatchFormComponent } from '../form/match-form.component';
 import { forkJoin } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-match-list',
@@ -31,7 +33,8 @@ import { forkJoin } from 'rxjs';
         MatDialogModule,
         MatSnackBarModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        TranslateModule
     ],
     templateUrl: './match-list.component.html',
     styleUrls: ['./match-list.component.scss']
@@ -49,6 +52,7 @@ export class MatchListComponent implements OnInit {
         private matchService: MatchService,
         private teamService: TeamService,
         private championshipService: ChampionshipService,
+        private authService: AuthService,
         private dialog: MatDialog,
         private snackBar: MatSnackBar
     ) {
@@ -60,7 +64,7 @@ export class MatchListComponent implements OnInit {
     }
 
     loadData() {
-        const orgIdStr = localStorage.getItem('skauts_org_id');
+        const orgIdStr = this.authService.getOrgId();
         if (orgIdStr) {
             const orgId = parseInt(orgIdStr, 10);
 

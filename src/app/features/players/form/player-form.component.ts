@@ -10,7 +10,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { PlayerService } from '../../../core/services/player.service';
 import { RoleService } from '../../../core/services/role.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { PlayerDto, RoleDto } from '../../../core/models/api-models';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-player-form',
@@ -24,7 +26,8 @@ import { PlayerDto, RoleDto } from '../../../core/models/api-models';
         MatSelectModule,
         MatDatepickerModule,
         MatNativeDateModule,
-        MatButtonModule
+        MatButtonModule,
+        TranslateModule
     ],
     templateUrl: './player-form.component.html',
     styleUrls: ['./player-form.component.scss']
@@ -39,6 +42,7 @@ export class PlayerFormComponent implements OnInit {
         private fb: FormBuilder,
         private playerService: PlayerService,
         private roleService: RoleService,
+        private authService: AuthService,
         public dialogRef: MatDialogRef<PlayerFormComponent>,
         @Inject(MAT_DIALOG_DATA) public data: PlayerDto | null
     ) {
@@ -82,7 +86,7 @@ export class PlayerFormComponent implements OnInit {
         if (this.form.invalid) return;
 
         this.isLoading = true;
-        const orgIdStr = localStorage.getItem('skauts_org_id');
+        const orgIdStr = this.authService.getOrgId();
         if (!orgIdStr) {
             console.error('No organization selected');
             this.isLoading = false;

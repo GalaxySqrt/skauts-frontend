@@ -6,31 +6,35 @@
             <a mat-list-item routerLink="/dashboard" routerLinkActive="active-link"
                 [routerLinkActiveOptions]="{exact: true}">
                 <mat-icon matListItemIcon>dashboard</mat-icon>
-                <span matListItemTitle>Dashboard</span>
+                <span matListItemTitle>{{ 'MENU.DASHBOARD' | translate }}</span>
             </a>
             <a mat-list-item routerLink="/dashboard/championships" routerLinkActive="active-link">
                 <mat-icon matListItemIcon>emoji_events</mat-icon>
-                <span matListItemTitle>Championships</span>
+                <span matListItemTitle>{{ 'MENU.CHAMPIONSHIPS' | translate }}</span>
             </a>
             <a mat-list-item routerLink="/dashboard/organizations" routerLinkActive="active-link">
                 <mat-icon matListItemIcon>business</mat-icon>
-                <span matListItemTitle>Organizations</span>
+                <span matListItemTitle>{{ 'MENU.ORGANIZATIONS' | translate }}</span>
             </a>
             <a mat-list-item routerLink="/dashboard/players" routerLinkActive="active-link">
                 <mat-icon matListItemIcon>person</mat-icon>
-                <span matListItemTitle>Players</span>
+                <span matListItemTitle>{{ 'MENU.PLAYERS' | translate }}</span>
+            </a>
+            <a mat-list-item routerLink="/dashboard/players-prizes" routerLinkActive="active-link">
+                <mat-icon matListItemIcon>emoji_events</mat-icon>
+                <span matListItemTitle>{{ 'MENU.PRIZES' | translate }}</span>
             </a>
             <a mat-list-item routerLink="/dashboard/matches" routerLinkActive="active-link">
                 <mat-icon matListItemIcon>sports_soccer</mat-icon>
-                <span matListItemTitle>Matches</span>
+                <span matListItemTitle>{{ 'MENU.MATCHES' | translate }}</span>
             </a>
             <a mat-list-item routerLink="/dashboard/teams" routerLinkActive="active-link">
                 <mat-icon matListItemIcon>groups</mat-icon>
-                <span matListItemTitle>Teams</span>
+                <span matListItemTitle>{{ 'MENU.TEAMS' | translate }}</span>
             </a>
             <a mat-list-item routerLink="/dashboard/events/types" routerLinkActive="active-link">
                 <mat-icon matListItemIcon>event</mat-icon>
-                <span matListItemTitle>Event Types</span>
+                <span matListItemTitle>{{ 'MENU.EVENT_TYPES' | translate }}</span>
             </a>
         </mat-nav-list>
     </mat-sidenav>
@@ -42,6 +46,7 @@
             </button>
             <span>Skauts Admin</span>
             <span class="spacer"></span>
+            <app-language-selector></app-language-selector>
             <button mat-icon-button (click)="toggleTheme()" aria-label="Toggle theme">
                 <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
             </button>
@@ -51,7 +56,7 @@
             <mat-menu #menu="matMenu">
                 <button mat-menu-item (click)="logout()">
                     <mat-icon>logout</mat-icon>
-                    <span>Logout</span>
+                    <span>{{ 'COMMON.LOGOUT' | translate }}</span>
                 </button>
             </mat-menu>
         </mat-toolbar>

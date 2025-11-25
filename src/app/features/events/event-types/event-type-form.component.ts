@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { EventTypeService } from '../../../core/services/event-type.service';
 import { EventTypeDto } from '../../../core/models/api-models';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-event-type-form',
@@ -17,7 +18,8 @@ import { EventTypeDto } from '../../../core/models/api-models';
         MatDialogModule,
         MatFormFieldModule,
         MatInputModule,
-        MatButtonModule
+        MatButtonModule,
+        TranslateModule
     ],
     templateUrl: './event-type-form.component.html',
     styleUrls: ['./event-type-form.component.scss']

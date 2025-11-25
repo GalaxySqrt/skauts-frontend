@@ -31,6 +31,10 @@ export const DASHBOARD_ROUTES: Routes = [
             {
                 path: 'events',
                 loadChildren: () => import('../events/events.routes').then(m => m.EVENT_ROUTES)
+            },
+            {
+                path: 'players-prizes',
+                loadChildren: () => import('../players-prizes/players-prizes.routes').then(m => m.PRIZES_ROUTES)
             }
         ]
     }

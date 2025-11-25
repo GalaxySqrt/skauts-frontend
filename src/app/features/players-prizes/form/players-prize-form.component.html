@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>{{ (isEditMode ? 'PLAYERS_PRIZES.EDIT_PRIZE' : 'PLAYERS_PRIZES.ADD_PRIZE') | translate }}</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="form" class="form-container">
+
+        <mat-form-field appearance="outline">
+            <mat-label>{{ 'PLAYERS_PRIZES.PLAYER' | translate }}</mat-label>
+            <mat-select formControlName="playerId">
+                <mat-option *ngFor="let player of players" [value]="player.id">
+                    {{player.name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('playerId')?.hasError('required')">
+                {{ 'COMMON.REQUIRED_FIELD' | translate }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>{{ 'PLAYERS_PRIZES.PRIZE_TYPE' | translate }}</mat-label>
+            <mat-select formControlName="prizeTypeId">
+                <mat-option *ngFor="let type of prizeTypes" [value]="type.id">
+                    {{type.name}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.get('prizeTypeId')?.hasError('required')">
+                {{ 'COMMON.REQUIRED_FIELD' | translate }}
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <mat-label>{{ 'PLAYERS_PRIZES.RECEIVE_DATE' | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="receiveDate">
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="form.get('receiveDate')?.hasError('required')">
+                {{ 'COMMON.REQUIRED_FIELD' | translate }}
+            </mat-error>
+        </mat-form-field>
+
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">{{ 'COMMON.CANCEL' | translate }}</button>
+    <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="form.invalid">
+        {{ 'COMMON.SAVE' | translate }}
+    </button>
+</mat-dialog-actions>

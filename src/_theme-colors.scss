@@ -1,0 +1,78 @@
+@use '@angular/material' as mat;
+
+// Define the palettes
+$skauts-primary: mat.m2-define-palette(mat.$m2-teal-palette);
+$skauts-accent: mat.m2-define-palette(mat.$m2-pink-palette, A200, A100, A400);
+$skauts-warn: mat.m2-define-palette(mat.$m2-red-palette);
+
+// Define the themes
+$skauts-light-theme: mat.m2-define-light-theme((color: (primary: $skauts-primary,
+                accent: $skauts-accent,
+                warn: $skauts-warn,
+            ),
+            typography: mat.m2-define-typography-config(),
+            density: 0));
+
+$skauts-dark-theme: mat.m2-define-dark-theme((color: (primary: $skauts-primary,
+                accent: $skauts-accent,
+                warn: $skauts-warn,
+            ),
+            typography: mat.m2-define-typography-config(),
+            density: 0));
+
+// ===== MODERN GRADIENT SYSTEM =====
+
+// Primary gradients (Teal-based)
+$gradient-primary: linear-gradient(135deg, #00796b 0%, #26a69a 50%, #4db6ac 100%);
+$gradient-primary-intense: linear-gradient(135deg, #004d40 0%, #00796b 50%, #26a69a 100%);
+$gradient-primary-soft: linear-gradient(135deg, #b2dfdb 0%, #80cbc4 50%, #4db6ac 100%);
+
+// Accent gradients (Pink-based)
+$gradient-accent: linear-gradient(135deg, #f50057 0%, #ff4081 50%, #ff80ab 100%);
+$gradient-accent-soft: linear-gradient(135deg, #ff4081 0%, #ff80ab 50%, #ffb3d9 100%);
+
+// Background gradients
+$gradient-bg-light: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 50%, #bdbdbd 100%);
+$gradient-bg-dark: linear-gradient(135deg, #212121 0%, #424242 50%, #616161 100%);
+$gradient-bg-auth: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 25%, #80cbc4 50%, #4db6ac 75%, #26a69a 100%);
+$gradient-bg-auth-dark: linear-gradient(135deg, #004d40 0%, #00695c 25%, #00796b 50%, #00897b 75%, #009688 100%);
+
+// Animated background gradient
+$gradient-animated: linear-gradient(-45deg, #00796b, #26a69a, #f50057, #ff4081);
+
+// Card & Surface gradients
+$gradient-card-light: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+$gradient-card-dark: linear-gradient(145deg, rgba(66, 66, 66, 0.95), rgba(33, 33, 33, 0.85));
+
+// Hover overlay gradients
+$gradient-hover-light: linear-gradient(135deg, rgba(0, 121, 107, 0.08), rgba(38, 166, 154, 0.12));
+$gradient-hover-dark: linear-gradient(135deg, rgba(0, 121, 107, 0.15), rgba(38, 166, 154, 0.20));
+
+// Glow colors for effects
+$glow-primary: rgba(0, 121, 107, 0.4);
+$glow-accent: rgba(245, 0, 87, 0.4);
+$glow-success: rgba(76, 175, 80, 0.4);
+$glow-warning: rgba(255, 152, 0, 0.4);
+
+// Extended color palette
+$color-success: #4caf50;
+$color-warning: #ff9800;
+$color-info: #2196f3;
+
+// Shadow elevations with color
+$shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+$shadow-md: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+$shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.16), 0 4px 8px rgba(0, 0, 0, 0.12);
+$shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.20), 0 6px 12px rgba(0, 0, 0, 0.15);
+$shadow-glow-primary: 0 0 20px $glow-primary, 0 0 40px rgba(0, 121, 107, 0.2);
+$shadow-glow-accent: 0 0 20px $glow-accent, 0 0 40px rgba(245, 0, 87, 0.2);
+
+// Glassmorphism effects
+$glass-light: rgba(255, 255, 255, 0.25);
+$glass-dark: rgba(0, 0, 0, 0.25);
+$glass-blur: blur(10px);
+
+// Transition durations
+$transition-fast: 0.15s;
+$transition-normal: 0.3s;
+$transition-slow: 0.5s;

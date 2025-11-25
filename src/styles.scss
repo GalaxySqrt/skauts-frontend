@@ -1,33 +1,262 @@
 @use '@angular/material' as mat;
 
+@use 'theme-colors' as theme;
+
 @include mat.core();
 
-// Define the palettes
-$skauts-primary: mat.m2-define-palette(mat.$m2-teal-palette);
-$skauts-accent: mat.m2-define-palette(mat.$m2-pink-palette, A200, A100, A400);
-$skauts-warn: mat.m2-define-palette(mat.$m2-red-palette);
-
-// Define the themes
-$skauts-light-theme: mat.m2-define-light-theme((color: (primary: $skauts-primary,
-        accent: $skauts-accent,
-        warn: $skauts-warn,
-      ),
-      typography: mat.m2-define-typography-config(),
-      density: 0));
-
-$skauts-dark-theme: mat.m2-define-dark-theme((color: (primary: $skauts-primary,
-        accent: $skauts-accent,
-        warn: $skauts-warn,
-      ),
-      typography: mat.m2-define-typography-config(),
-      density: 0));
-
 // Apply the light theme by default
-@include mat.all-component-themes($skauts-light-theme);
+@include mat.all-component-themes(theme.$skauts-light-theme);
 
 // Apply the dark theme to the .dark-theme class
 .dark-theme {
-  @include mat.all-component-colors($skauts-dark-theme);
+  @include mat.all-component-colors(theme.$skauts-dark-theme);
+}
+
+// ===== GLOBAL ANIMATIONS =====
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes glow {
+
+  0%,
+  100% {
+    box-shadow: theme.$shadow-md;
+  }
+
+  50% {
+    box-shadow: theme.$shadow-glow-primary;
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-5px);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// ===== UTILITY CLASSES =====
+
+// Transition utilities
+.transition-all {
+  transition: all theme.$transition-normal ease-in-out;
+}
+
+.transition-fast {
+  transition: all theme.$transition-fast ease-in-out;
+}
+
+.transition-slow {
+  transition: all theme.$transition-slow ease-in-out;
+}
+
+// Animation utilities
+.animate-fade-in {
+  animation: fadeIn theme.$transition-normal ease-out;
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp theme.$transition-slow ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInLeft theme.$transition-normal ease-out;
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-scale-in {
+  animation: scaleIn theme.$transition-normal ease-out;
+}
+
+// Hover effects (reusable)
+.hover-scale {
+  transition: transform theme.$transition-normal ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.hover-lift {
+  transition: all theme.$transition-normal ease-in-out;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: theme.$shadow-lg;
+  }
+}
+
+.hover-glow-primary {
+  transition: all theme.$transition-normal ease-in-out;
+
+  &:hover {
+    box-shadow: theme.$shadow-glow-primary;
+  }
+}
+
+.hover-glow-accent {
+  transition: all theme.$transition-normal ease-in-out;
+
+  &:hover {
+    box-shadow: theme.$shadow-glow-accent;
+  }
+}
+
+// Glassmorphism utilities
+.glass-light {
+  background: theme.$glass-light;
+  backdrop-filter: theme.$glass-blur;
+  -webkit-backdrop-filter: theme.$glass-blur;
+}
+
+.glass-dark {
+  background: theme.$glass-dark;
+  backdrop-filter: theme.$glass-blur;
+  -webkit-backdrop-filter: theme.$glass-blur;
+}
+
+// Gradient backgrounds
+.bg-gradient-primary {
+  background: theme.$gradient-primary;
+}
+
+.bg-gradient-accent {
+  background: theme.$gradient-accent;
+}
+
+.bg-gradient-animated {
+  background: theme.$gradient-animated;
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+// ===== GLOBAL STYLES =====
+
+html {
+  scroll-behavior: smooth;
 }
 
 html,
@@ -38,4 +267,52 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// Improve Material components with transitions
+mat-card {
+  transition: all theme.$transition-normal ease-in-out !important;
+}
+
+mat-form-field {
+  .mat-mdc-text-field-wrapper {
+    transition: all theme.$transition-normal ease-in-out;
+  }
+}
+
+button {
+  transition: all theme.$transition-normal ease-in-out !important;
+}
+
+// Custom scrollbar styling
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 121, 107, 0.3);
+  border-radius: 4px;
+
+  &:hover {
+    background: rgba(0, 121, 107, 0.5);
+  }
+}
+
+.dark-theme {
+  ::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(38, 166, 154, 0.3);
+
+    &:hover {
+      background: rgba(38, 166, 154, 0.5);
+    }
+  }
 }

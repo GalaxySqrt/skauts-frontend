@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { OrganizationService } from '../../../core/services/organization.service';
 import { OrganizationDto } from '../../../core/models/api-models';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-organization-form',
@@ -17,7 +18,8 @@ import { OrganizationDto } from '../../../core/models/api-models';
         MatDialogModule,
         MatFormFieldModule,
         MatInputModule,
-        MatButtonModule
+        MatButtonModule,
+        TranslateModule
     ],
     templateUrl: './organization-form.component.html',
     styleUrls: ['./organization-form.component.scss']

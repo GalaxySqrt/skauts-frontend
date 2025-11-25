@@ -6,7 +6,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { TeamService } from '../../../core/services/team.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { TeamDto } from '../../../core/models/api-models';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-team-form',
@@ -17,7 +19,8 @@ import { TeamDto } from '../../../core/models/api-models';
         MatDialogModule,
         MatFormFieldModule,
         MatInputModule,
-        MatButtonModule
+        MatButtonModule,
+        TranslateModule
     ],
     templateUrl: './team-form.component.html',
     styleUrls: ['./team-form.component.scss']
@@ -30,6 +33,7 @@ export class TeamFormComponent implements OnInit {
     constructor(
         private fb: FormBuilder,
         private teamService: TeamService,
+        private authService: AuthService,
         public dialogRef: MatDialogRef<TeamFormComponent>,
         @Inject(MAT_DIALOG_DATA) public data: TeamDto | null
     ) {
@@ -51,7 +55,7 @@ export class TeamFormComponent implements OnInit {
         if (this.form.invalid) return;
 
         this.isLoading = true;
-        const orgIdStr = localStorage.getItem('skauts_org_id');
+        const orgIdStr = this.authService.getOrgId();
         if (!orgIdStr) {
             console.error('No organization selected');
             this.isLoading = false;

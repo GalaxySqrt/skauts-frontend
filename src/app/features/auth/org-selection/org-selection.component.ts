@@ -7,7 +7,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { UsersOrganizationService } from '../../../core/services/users-organization.service';
 import { OrganizationService } from '../../../core/services/organization.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { OrganizationDto, UsersOrganizationDto } from '../../../core/models/api-models';
+import { TranslateModule } from '@ngx-translate/core';
 import { forkJoin, map, switchMap } from 'rxjs';
 
 @Component({
@@ -18,7 +20,8 @@ import { forkJoin, map, switchMap } from 'rxjs';
         MatCardModule,
         MatListModule,
         MatButtonModule,
-        MatIconModule
+        MatIconModule,
+        TranslateModule
     ],
     templateUrl: './org-selection.component.html',
     styleUrls: ['./org-selection.component.scss']
@@ -30,11 +33,12 @@ export class OrgSelectionComponent implements OnInit {
     constructor(
         private usersOrgService: UsersOrganizationService,
         private orgService: OrganizationService,
+        private authService: AuthService,
         private router: Router
     ) { }
 
     ngOnInit() {
-        const userIdStr = localStorage.getItem('skauts_user_id');
+        const userIdStr = this.authService.getUserId();
         if (!userIdStr) {
             this.router.navigate(['/auth/login']);
             return;
@@ -63,7 +67,7 @@ export class OrgSelectionComponent implements OnInit {
     }
 
     selectOrg(org: OrganizationDto) {
-        localStorage.setItem('skauts_org_id', org.id?.toString() || '');
+        this.authService.setOrgId(org.id?.toString() || '');
         this.router.navigate(['/dashboard']);
     }
 }

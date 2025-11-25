@@ -1,23 +1,23 @@
 <div class="detail-container" *ngIf="match">
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Match Details</mat-card-title>
+            <mat-card-title>{{ 'MATCHES.DETAILS_TITLE' | translate }}</mat-card-title>
             <mat-card-subtitle>
                 {{ match.date | date:'medium' }}
             </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <p>Team A ID: {{ match.teamAId }}</p>
-            <p>Team B ID: {{ match.teamBId }}</p>
+            <p>{{ 'MATCHES.TEAM_A' | translate }}: {{ match.teamAId }}</p>
+            <p>{{ 'MATCHES.TEAM_B' | translate }}: {{ match.teamBId }}</p>
 
-            <h3>Events</h3>
+            <h3>{{ 'MATCHES.EVENTS_TITLE' | translate }}</h3>
             <mat-list>
                 <mat-list-item *ngFor="let event of events">
-                    <span matListItemTitle>Event Type: {{ event.eventTypeId }}</span>
-                    <span matListItemLine>Player: {{ event.playerId }}</span>
-                    <span matListItemLine>Time: {{ event.eventTime }}</span>
+                    <span matListItemTitle>{{ 'MATCHES.EVENT_TYPE' | translate }}: {{ event.eventTypeId }}</span>
+                    <span matListItemLine>{{ 'MATCHES.PLAYER' | translate }}: {{ event.playerId }}</span>
+                    <span matListItemLine>{{ 'MATCHES.TIME' | translate }}: {{ event.eventTime }}</span>
                 </mat-list-item>
-                <mat-list-item *ngIf="events.length === 0">No events recorded.</mat-list-item>
+                <mat-list-item *ngIf="events.length === 0">{{ 'MATCHES.NO_EVENTS' | translate }}</mat-list-item>
             </mat-list>
         </mat-card-content>
     </mat-card>

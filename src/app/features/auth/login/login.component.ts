@@ -9,6 +9,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { AuthService } from '../../../core/services/auth.service';
 import { UserService } from '../../../core/services/user.service';
+import { TranslateModule } from '@ngx-translate/core';
+import { LanguageSelectorComponent } from '../../../shared/components/language-selector/language-selector.component';
 
 @Component({
     selector: 'app-login',
@@ -20,7 +22,9 @@ import { UserService } from '../../../core/services/user.service';
         MatFormFieldModule,
         MatInputModule,
         MatButtonModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        TranslateModule,
+        LanguageSelectorComponent
     ],
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
@@ -56,7 +60,9 @@ export class LoginComponent {
                         // Store user info if needed, or just rely on email/token
                         // For now, navigate to org selection
                         // We might want to store the user ID in AuthService or localStorage
-                        localStorage.setItem('skauts_user_id', user.id?.toString() || '');
+                        if (user.id) {
+                            this.authService.setUserId(user.id.toString());
+                        }
                         this.router.navigate(['/auth/org-selection']);
                     },
                     error: () => {

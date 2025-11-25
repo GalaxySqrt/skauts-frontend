@@ -12,9 +12,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { PlayerService } from '../../../core/services/player.service';
 import { RoleService } from '../../../core/services/role.service';
+import { AuthService } from '../../../core/services/auth.service';
 import { PlayerDto, RoleDto } from '../../../core/models/api-models';
 import { PlayerFormComponent } from '../form/player-form.component';
 import { forkJoin } from 'rxjs';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-player-list',
@@ -30,7 +32,8 @@ import { forkJoin } from 'rxjs';
         MatDialogModule,
         MatSnackBarModule,
         MatFormFieldModule,
-        MatInputModule
+        MatInputModule,
+        TranslateModule
     ],
     templateUrl: './player-list.component.html',
     styleUrls: ['./player-list.component.scss']
@@ -46,6 +49,7 @@ export class PlayerListComponent implements OnInit {
     constructor(
         private playerService: PlayerService,
         private roleService: RoleService,
+        private authService: AuthService,
         private dialog: MatDialog,
         private snackBar: MatSnackBar
     ) {
@@ -57,7 +61,7 @@ export class PlayerListComponent implements OnInit {
     }
 
     loadData() {
-        const orgIdStr = localStorage.getItem('skauts_org_id');
+        const orgIdStr = this.authService.getOrgId();
         if (orgIdStr) {
             const orgId = parseInt(orgIdStr, 10);
 
