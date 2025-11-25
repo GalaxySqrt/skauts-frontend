@@ -1,8 +1,9 @@
 @use '@angular/material' as mat;
-@use '../../../../theme-colors' as theme;
+@use '../../../../_theme-colors' as theme;
 
 .sidenav-container {
     height: 100%;
+    position: relative;
 }
 
 .sidenav {
@@ -10,11 +11,23 @@
     background: linear-gradient(180deg, rgba(0, 121, 107, 0.03) 0%, rgba(38, 166, 154, 0.05) 100%);
     border-right: 1px solid rgba(0, 121, 107, 0.1);
     box-shadow: theme.$shadow-sm;
+    z-index: 100;
+
+    // Solid background for mobile
+    @media (max-width: 599px) {
+        background: #ffffff;
+        box-shadow: theme.$shadow-xl;
+    }
 }
 
 .dark-theme .sidenav {
     background: linear-gradient(180deg, rgba(0, 121, 107, 0.08) 0%, rgba(38, 166, 154, 0.12) 100%);
     border-right: 1px solid rgba(38, 166, 154, 0.15);
+
+    @media (max-width: 599px) {
+        background: #2d2d2d;
+        box-shadow: theme.$shadow-xl;
+    }
 }
 
 .sidenav .mat-toolbar {
@@ -24,7 +37,7 @@
 .mat-toolbar.mat-primary {
     position: sticky;
     top: 0;
-    z-index: 1;
+    z-index: 2;
     background: theme.$gradient-primary;
     box-shadow: theme.$shadow-md;
 
@@ -159,5 +172,45 @@ a[mat-list-item] {
         &:active {
             transform: scale(0.95);
         }
+    }
+}
+
+// Mobile responsive fixes
+@media (max-width: 599px) {
+    .sidenav {
+        width: 280px;
+        max-width: 80vw;
+    }
+
+    .content {
+        padding: 16px;
+    }
+
+    .mat-toolbar {
+        padding: 0 8px;
+
+        button[mat-icon-button] {
+            margin: 0 4px;
+        }
+
+        span:not(.spacer) {
+            font-size: 16px;
+        }
+    }
+
+    // Ensure sidenav backdrop works in mobile
+    .mat-drawer-backdrop {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+}
+
+// Tablet adjustments
+@media (min-width: 600px) and (max-width: 959px) {
+    .sidenav {
+        width: 240px;
+    }
+
+    .content {
+        padding: 20px;
     }
 }
