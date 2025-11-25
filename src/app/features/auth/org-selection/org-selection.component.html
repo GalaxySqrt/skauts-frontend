@@ -1,0 +1,24 @@
+<div class="org-selection-container">
+    <mat-card class="org-card">
+        <mat-card-header>
+            <mat-card-title>Select Organization</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div *ngIf="isLoading" class="loading">
+                Loading...
+            </div>
+
+            <mat-nav-list *ngIf="!isLoading && organizations.length > 0">
+                <a mat-list-item *ngFor="let org of organizations" (click)="selectOrg(org)">
+                    <mat-icon matListItemIcon>business</mat-icon>
+                    <span matListItemTitle>{{ org.name }}</span>
+                </a>
+            </mat-nav-list>
+
+            <div *ngIf="!isLoading && organizations.length === 0" class="no-orgs">
+                <p>You are not a member of any organization.</p>
+                <button mat-button color="primary" routerLink="/auth/login">Back to Login</button>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>

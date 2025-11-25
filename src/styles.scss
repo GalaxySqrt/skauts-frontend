@@ -1,1 +1,41 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// Define the palettes
+$skauts-primary: mat.m2-define-palette(mat.$m2-teal-palette);
+$skauts-accent: mat.m2-define-palette(mat.$m2-pink-palette, A200, A100, A400);
+$skauts-warn: mat.m2-define-palette(mat.$m2-red-palette);
+
+// Define the themes
+$skauts-light-theme: mat.m2-define-light-theme((color: (primary: $skauts-primary,
+        accent: $skauts-accent,
+        warn: $skauts-warn,
+      ),
+      typography: mat.m2-define-typography-config(),
+      density: 0));
+
+$skauts-dark-theme: mat.m2-define-dark-theme((color: (primary: $skauts-primary,
+        accent: $skauts-accent,
+        warn: $skauts-warn,
+      ),
+      typography: mat.m2-define-typography-config(),
+      density: 0));
+
+// Apply the light theme by default
+@include mat.all-component-themes($skauts-light-theme);
+
+// Apply the dark theme to the .dark-theme class
+.dark-theme {
+  @include mat.all-component-colors($skauts-dark-theme);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

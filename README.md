@@ -1,59 +1,108 @@
-# SkautsFrontend
+# Skauts Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.6.
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow?style=for-the-badge)
 
-## Development server
+Skauts Frontend é uma aplicação web desenvolvida em Angular para gerenciamento de campeonatos, times, jogadores e eventos esportivos.
 
-To start a local development server, run:
+## 🚀 Tecnologias Utilizadas
+
+![Angular](https://img.shields.io/badge/angular-%23DD0031.svg?style=for-the-badge&logo=angular&logoColor=white)
+![Angular Material](https://img.shields.io/badge/Angular%20Material-%233f51b5.svg?style=for-the-badge&logo=angular&logoColor=white)
+![RxJS](https://img.shields.io/badge/rxjs-%23B7178C.svg?style=for-the-badge&logo=reactivex&logoColor=white)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![SCSS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+
+## ✨ Funcionalidades
+
+A aplicação está organizada nos seguintes módulos principais:
+
+- 🔐 **Auth**: Gerenciamento de autenticação e seleção de organização.
+- 🏆 **Championships**: Gestão de campeonatos.
+- 📊 **Dashboard**: Painel principal com visão geral.
+- 📅 **Events**: Registro e visualização de eventos de partidas.
+- ⚔️ **Matches**: Gerenciamento de partidas.
+- 🏢 **Organizations**: Administração de organizações.
+- 🏃 **Players**: Cadastro e gestão de jogadores.
+- 👥 **Teams**: Gerenciamento de times.
+
+## 📋 Pré-requisitos
+
+Antes de começar, certifique-se de ter instalado em sua máquina:
+
+- ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=flat&logo=node.js&logoColor=white) [Node.js](https://nodejs.org/) (versão compatível com Angular 20)
+- ![NPM](https://img.shields.io/badge/NPM-%23CB3837.svg?style=flat&logo=npm&logoColor=white) [npm](https://www.npmjs.com/) (gerenciador de pacotes)
+
+## 🔧 Instalação
+
+1. Clone o repositório:
+   ```bash
+   git clone <url-do-repositorio>
+   cd skauts-frontend
+   ```
+
+2. Instale as dependências:
+   ```bash
+   npm install
+   ```
+
+## ▶️ Executando a Aplicação
+
+Para iniciar o servidor de desenvolvimento:
 
 ```bash
-ng serve
+npm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Acesse `http://localhost:4200/` no seu navegador. A aplicação irá recarregar automaticamente se você alterar qualquer arquivo de código.
 
-## Code scaffolding
+## 📦 Build
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Para construir o projeto para produção:
 
 ```bash
-ng generate component component-name
+npm run build
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Os artefatos de build serão armazenados no diretório `dist/`.
+
+## 🧪 Testes
+
+Para executar os testes unitários via [Karma](https://karma-runner.github.io):
 
 ```bash
-ng generate --help
+npm test
 ```
 
-## Building
+## 📂 Estrutura do Projeto
 
-To build the project run:
-
-```bash
-ng build
+```
+skauts-frontend/
+├── src/
+│   ├── app/
+│   │   ├── core/          # 🛡️ Serviços, guardas e interceptores globais
+│   │   ├── features/      # 🧩 Módulos de funcionalidades (Auth, Dashboard, etc.)
+│   │   ├── shared/        # 🔄 Componentes e pipes compartilhados
+│   │   ├── app.component.*
+│   │   └── ...
+│   ├── assets/            # 🖼️ Imagens e arquivos estáticos
+│   ├── environments/      # 🌍 Configurações de ambiente
+│   ├── styles.scss        # 🎨 Estilos globais
+│   ├── main.ts            # 🚀 Ponto de entrada da aplicação
+│   └── ...
+├── angular.json           # ⚙️ Configuração do Angular CLI
+├── package.json           # 📦 Dependências e scripts
+├── tsconfig.json          # 📝 Configuração do TypeScript
+└── README.md              # 📖 Documentação do projeto
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## 🔌 API
 
-## Running unit tests
+A aplicação se comunica com uma API backend. A especificação da API pode ser encontrada no arquivo `swagger.json` na raiz do projeto.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
+O endpoint da API está configurado em `src/environments/environment.ts`:
+```typescript
+export const environment = {
+    production: false,
+    apiUrl: 'http://localhost:8080'
+};
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
