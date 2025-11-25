@@ -12,20 +12,23 @@
     border-right: 1px solid rgba(0, 121, 107, 0.1);
     box-shadow: theme.$shadow-sm;
     z-index: 100;
-
-    // Solid background for mobile
-    @media (max-width: 599px) {
-        background: #ffffff;
-        box-shadow: theme.$shadow-xl;
-    }
 }
 
 .dark-theme .sidenav {
     background: linear-gradient(180deg, rgba(0, 121, 107, 0.08) 0%, rgba(38, 166, 154, 0.12) 100%);
     border-right: 1px solid rgba(38, 166, 154, 0.15);
+}
 
-    @media (max-width: 599px) {
-        background: #2d2d2d;
+// Mobile: solid background instead of gradient for better visibility
+@media (max-width: 599px) {
+    .sidenav {
+        background: #fafafa !important;
+        box-shadow: theme.$shadow-xl;
+    }
+
+    :host-context(.dark-theme) .sidenav,
+    .dark-theme .sidenav {
+        background: #212121 !important;
         box-shadow: theme.$shadow-xl;
     }
 }
