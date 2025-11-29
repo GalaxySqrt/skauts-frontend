@@ -2,12 +2,76 @@
 </h2>
 <mat-dialog-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>{{ 'COMMON.NAME' | translate }}</mat-label>
-            <input matInput formControlName="name" placeholder="Ex. Real Madrid">
-            <mat-error *ngIf="form.get('name')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
-                }}</mat-error>
-        </mat-form-field>
+        <!-- Team Information Section -->
+        <div class="form-section">
+            <h3 class="section-title">{{ 'TEAMS.TEAM_INFO' | translate }}</h3>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>{{ 'COMMON.NAME' | translate }}</mat-label>
+                <input matInput formControlName="name" placeholder="Ex. Real Madrid">
+                <mat-error *ngIf="form.get('name')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                    }}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <!-- Player Roster Section (Only in Edit Mode) -->
+        <div class="form-section" *ngIf="isEditMode">
+            <h3 class="section-title">{{ 'TEAMS.ROSTER' | translate }}</h3>
+
+            <!-- Add Player -->
+            <div class="add-player-section">
+                <mat-form-field appearance="outline" class="player-select">
+                    <mat-label>{{ 'TEAMS.SELECT_PLAYER' | translate }}</mat-label>
+                    <mat-select [(ngModel)]="selectedPlayerId" [ngModelOptions]="{standalone: true}">
+                        <mat-option *ngFor="let player of availablePlayers" [value]="player.id">
+                            {{ player.name }} - {{ getRoleName(player.roleId) }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-raised-button color="primary" type="button" (click)="addPlayer()"
+                    [disabled]="!selectedPlayerId" class="add-player-btn">
+                    <mat-icon>add</mat-icon>
+                    {{ 'TEAMS.ADD_PLAYER' | translate }}
+                </button>
+            </div>
+
+            <!-- Current Players List -->
+            <div class="players-list" *ngIf="teamPlayers.length > 0">
+                <h4 class="list-header">
+                    {{ 'TEAMS.CURRENT_PLAYERS' | translate }} ({{ teamPlayers.length }})
+                </h4>
+                <mat-list>
+                    <mat-list-item *ngFor="let teamPlayer of teamPlayers" class="player-item">
+                        <div class="player-info">
+                            <mat-icon class="player-icon">person</mat-icon>
+                            <div class="player-details">
+                                <span class="player-name">{{ teamPlayer.player?.name }}</span>
+                                <span class="player-role">{{ getRoleName(teamPlayer.player?.roleId) }}</span>
+                                <span class="join-date">
+                                    {{ 'TEAMS.JOIN_DATE' | translate }}: {{ teamPlayer.joinDate | date: 'dd/MM/yyyy' }}
+                                </span>
+                            </div>
+                        </div>
+                        <button mat-icon-button color="warn" (click)="removePlayer(teamPlayer.playerId!)" type="button"
+                            class="remove-btn">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-list-item>
+                </mat-list>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" *ngIf="teamPlayers.length === 0">
+                <mat-icon>groups</mat-icon>
+                <p>{{ 'TEAMS.NO_PLAYERS' | translate }}</p>
+            </div>
+        </div>
+
+        <!-- Message for new teams -->
+        <div class="info-message" *ngIf="!isEditMode">
+            <mat-icon>info</mat-icon>
+            <p>{{ 'TEAMS.SAVE_TEAM_FIRST' | translate }}</p>
+        </div>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

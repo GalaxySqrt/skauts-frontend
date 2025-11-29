@@ -1,7 +1,7 @@
 <h2 mat-dialog-title>{{ isEditMode ? ('EVENT_TYPES.FORM_TITLE_EDIT' | translate) : ('EVENT_TYPES.FORM_TITLE_ADD' |
     translate) }}</h2>
 <mat-dialog-content>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" style="margin-top: 8px;">
         <mat-form-field appearance="outline" class="full-width">
             <mat-label>{{ 'COMMON.NAME' | translate }}</mat-label>
             <input matInput formControlName="name" [placeholder]="'EVENT_TYPES.NAME_PLACEHOLDER' | translate">

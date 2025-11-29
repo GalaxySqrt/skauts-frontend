@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -36,7 +36,7 @@ import { TranslateModule } from '@ngx-translate/core';
     styleUrls: ['./organization-list.component.scss']
 })
 export class OrganizationListComponent implements OnInit {
-    displayedColumns: string[] = ['name', 'createdAt', 'actions'];
+    displayedColumns: string[] = ['image', 'name', 'createdAt', 'actions'];
     dataSource: MatTableDataSource<OrganizationDto>;
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -45,7 +45,8 @@ export class OrganizationListComponent implements OnInit {
     constructor(
         private organizationService: OrganizationService,
         private dialog: MatDialog,
-        private snackBar: MatSnackBar
+        private snackBar: MatSnackBar,
+        private router: Router
     ) {
         this.dataSource = new MatTableDataSource();
     }
@@ -99,5 +100,9 @@ export class OrganizationListComponent implements OnInit {
                 error: (err) => console.error('Failed to delete', err)
             });
         }
+    }
+
+    switchOrganization() {
+        this.router.navigate(['/auth/org-selection']);
     }
 }

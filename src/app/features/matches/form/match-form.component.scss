@@ -1,83 +1,481 @@
 @use '@angular/material' as mat;
 @use '../../../../_theme-colors' as theme;
 
-.form-container {
+// Dialog content padding override
+::ng-deep .mat-mdc-dialog-content {
+    max-height: 80vh !important;
+    overflow-y: auto;
+}
+
+// Form Structure
+.row {
     display: flex;
-    flex-direction: column;
-    gap: 20px;
+    gap: 16px;
+    margin-bottom: 16px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.half-width {
+    flex: 1;
+    min-width: 0;
+}
+
+.full-width {
+    width: 100%;
+}
+
+// Section Styling
+.form-section {
+    margin-bottom: 32px;
     padding: 24px;
-    min-width: 400px;
-    max-width: 600px;
-    margin: 0 auto;
+    border-radius: 12px;
+    background: theme.$gradient-card-light;
+    box-shadow: theme.$shadow-sm;
+    transition: all theme.$transition-normal ease-in-out;
+
+    &:hover {
+        box-shadow: theme.$shadow-md;
+    }
+
+    .dark-theme & {
+        background: theme.$gradient-card-dark;
+    }
+}
+
+.section-title {
+    margin: 0 0 20px 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    background: theme.$gradient-primary;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .title-icon {
+        -webkit-text-fill-color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+        font-size: 28px;
+        width: 28px;
+        height: 28px;
+    }
+}
+
+.section-header {
+    margin-bottom: 16px;
+}
+
+// Events Section
+.events-section {
+    background: linear-gradient(145deg, rgba(0, 121, 107, 0.05), rgba(38, 166, 154, 0.08));
+    border: 2px solid rgba(0, 121, 107, 0.2);
     animation: fadeInUp 0.5s ease-out;
 
-    mat-form-field {
-        width: 100%;
-        transition: all theme.$transition-normal ease-in-out;
+    .dark-theme & {
+        background: linear-gradient(145deg, rgba(0, 121, 107, 0.15), rgba(38, 166, 154, 0.25));
+        border-color: rgba(77, 182, 172, 0.4);
+    }
+}
 
-        &:focus-within {
-            .mat-mdc-text-field-wrapper {
-                box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.2);
-                border-radius: 4px;
-            }
+// Event Form
+.event-form-container {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 8px;
+    margin-bottom: 24px;
+    backdrop-filter: blur(10px);
+    box-shadow: theme.$shadow-sm;
+
+    .dark-theme & {
+        background: rgba(38, 166, 154, 0.1);
+        border: 1px solid rgba(77, 182, 172, 0.2);
+    }
+}
+
+.event-form-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    align-items: start;
+
+    @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.event-field {
+    width: 100%;
+
+    mat-icon[matPrefix] {
+        margin-right: 8px;
+        color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+    }
+}
+
+.event-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    border-radius: 24px;
+    font-weight: 600;
+    transition: all theme.$transition-normal ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    min-height: 40px;
+
+    mat-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+    }
+
+    &.add-btn {
+        background: theme.$gradient-primary;
+        color: white;
+        box-shadow: theme.$shadow-md;
+
+        &:hover:not(:disabled) {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: theme.$shadow-glow-primary;
         }
 
-        label {
-            transition: color theme.$transition-fast ease-in-out;
+        &:active:not(:disabled) {
+            transform: translateY(0) scale(0.98);
+        }
+    }
+
+    &.update-btn {
+        background: theme.$gradient-accent;
+        color: white;
+
+        &:hover:not(:disabled) {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: theme.$shadow-glow-accent;
+        }
+    }
+
+    &.cancel-btn {
+        &:hover:not(:disabled) {
+            background: rgba(0, 0, 0, 0.05);
+
+            .dark-theme & {
+                background: rgba(255, 255, 255, 0.1);
+            }
         }
     }
 }
 
-.form-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 12px;
+// Events List
+.events-list-container {
     margin-top: 24px;
-    padding-top: 16px;
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.list-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+
+    mat-icon {
+        font-size: 24px;
+        width: 24px;
+        height: 24px;
+    }
+}
+
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 8px;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.02);
+
+    .dark-theme & {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    // Custom scrollbar
+    &::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.05);
+        border-radius: 4px;
+
+        .dark-theme & {
+            background: rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: theme.$gradient-primary;
+        border-radius: 4px;
+
+        &:hover {
+            background: theme.$gradient-primary-intense;
+        }
+    }
+}
+
+.event-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: theme.$shadow-sm;
+    transition: all theme.$transition-normal ease-in-out;
+    border-left: 4px solid transparent;
+    animation: fadeIn 0.3s ease-out;
+
+    &:hover {
+        transform: translateX(4px);
+        box-shadow: theme.$shadow-md;
+        border-left-color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+    }
+
+    &.editing {
+        border-left-color: mat.m2-get-color-from-palette(theme.$skauts-accent);
+        background: linear-gradient(145deg, rgba(245, 0, 87, 0.05), rgba(255, 64, 129, 0.08));
+        box-shadow: theme.$shadow-md;
+    }
+
+    .dark-theme & {
+        background: rgba(77, 182, 172, 0.08);
+        border: 1px solid rgba(77, 182, 172, 0.15);
+
+        &:hover {
+            background: rgba(77, 182, 172, 0.15);
+            border-color: rgba(77, 182, 172, 0.3);
+        }
+
+        &.editing {
+            background: linear-gradient(145deg, rgba(245, 0, 87, 0.15), rgba(255, 64, 129, 0.2));
+            border-color: rgba(245, 0, 87, 0.4);
+        }
+    }
+}
+
+.event-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex: 1;
+}
+
+.event-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: theme.$gradient-primary;
+    box-shadow: theme.$shadow-sm;
+
+    mat-icon {
+        color: white;
+        font-size: 28px;
+        width: 28px;
+        height: 28px;
+    }
+}
+
+.event-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.event-type-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    background: theme.$gradient-primary;
+    border-radius: 16px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+    width: fit-content;
+    box-shadow: theme.$shadow-sm;
+
+    .badge-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.event-player {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: rgba(0, 0, 0, 0.7);
+
+    .dark-theme & {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .player-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid mat.m2-get-color-from-palette(theme.$skauts-primary);
+        box-shadow: theme.$shadow-sm;
+        transition: all theme.$transition-fast ease-in-out;
+
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: theme.$shadow-md;
+        }
+    }
+
+    .player-icon {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+        color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+
+        .dark-theme & {
+            color: rgba(77, 182, 172, 1);
+        }
+    }
+
+    .player-name {
+        font-weight: 600;
+
+        .dark-theme & {
+            font-weight: 500;
+        }
+    }
+}
+
+.event-time {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.85rem;
+    color: rgba(0, 0, 0, 0.6);
+
+    .dark-theme & {
+        color: rgba(255, 255, 255, 0.6);
+    }
+
+    .time-icon {
+        font-size: 16px;
+        width: 16px;
+        height: 16px;
+    }
+}
+
+.event-item-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 
     button {
-        min-width: 100px;
-        border-radius: 24px;
-        font-weight: 500;
-        transition: all theme.$transition-normal ease-in-out;
+        transition: all theme.$transition-fast ease-in-out;
 
-        &[type="submit"] {
-            background: theme.$gradient-primary;
-            color: white;
-            box-shadow: theme.$shadow-md;
-
-            &:hover:not(:disabled) {
-                transform: translateY(-2px) scale(1.05);
-                box-shadow: theme.$shadow-glow-primary;
-            }
-
-            &:active:not(:disabled) {
-                transform: translateY(0) scale(0.98);
-            }
-
-            &:disabled {
-                opacity: 0.6;
-                cursor: not-allowed;
-            }
+        &:hover:not(:disabled) {
+            transform: scale(1.1);
         }
 
-        &[type="button"] {
-            background: transparent;
-            border: 2px solid rgba(0, 121, 107, 0.3);
-            color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+        &:active:not(:disabled) {
+            transform: scale(0.95);
+        }
 
-            &:hover:not(:disabled) {
-                background: rgba(0, 121, 107, 0.05);
-                border-color: mat.m2-get-color-from-palette(theme.$skauts-primary);
-                transform: scale(1.05);
-            }
+        &:disabled {
+            opacity: 0.4;
         }
     }
 }
 
-.dark-theme .form-actions {
-    border-top-color: rgba(255, 255, 255, 0.1);
+// Empty State
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.4);
+
+    .dark-theme & {
+        color: rgba(255, 255, 255, 0.4);
+    }
+
+    mat-icon {
+        font-size: 64px;
+        width: 64px;
+        height: 64px;
+        margin-bottom: 16px;
+        opacity: 0.5;
+    }
+
+    p {
+        font-size: 1.1rem;
+        margin: 0;
+    }
+}
+
+// Info Message
+.info-message {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(33, 150, 243, 0.1);
+    border-left: 4px solid theme.$color-info;
+    border-radius: 8px;
+    margin-top: 16px;
+
+    mat-icon {
+        color: theme.$color-info;
+    }
+
+    p {
+        margin: 0;
+        color: rgba(0, 0, 0, 0.7);
+
+        .dark-theme & {
+            color: rgba(255, 255, 255, 0.8);
+        }
+    }
+}
+
+// Form Field Enhancements
+mat-form-field {
+    width: 100%;
+    transition: all theme.$transition-normal ease-in-out;
+
+    &:focus-within {
+        .mat-mdc-text-field-wrapper {
+            box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.2);
+            border-radius: 4px;
+        }
+    }
 }
 
 // Error messages with shake animation
@@ -87,25 +485,151 @@ mat-error {
     font-weight: 500;
 }
 
-// Loading state
-.loading-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(255, 255, 255, 0.8);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10;
-    animation: fadeIn 0.3s ease-out;
+// Animations
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
 
-    mat-spinner {
-        margin: 0 auto;
+    to {
+        opacity: 1;
     }
 }
 
-.dark-theme .loading-overlay {
-    background: rgba(0, 0, 0, 0.8);
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+        transform: translateX(-4px);
+    }
+
+    20%,
+    40%,
+    60%,
+    80% {
+        transform: translateX(4px);
+    }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .form-section {
+        padding: 16px;
+        margin-bottom: 20px;
+    }
+
+    .event-form-container {
+        padding: 16px;
+    }
+
+    .event-form-grid {
+        gap: 12px;
+
+        .event-actions {
+            grid-column: 1 / -1;
+            justify-content: stretch;
+
+            button {
+                flex: 1;
+                min-height: 48px;
+            }
+        }
+    }
+
+    .event-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        padding: 16px 12px;
+
+        &:hover {
+            transform: none;
+        }
+    }
+
+    .event-content {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .event-icon {
+        width: 40px;
+        height: 40px;
+
+        mat-icon {
+            font-size: 24px;
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    .event-details {
+        width: 100%;
+        gap: 8px;
+    }
+
+    .event-type-badge {
+        font-size: 0.8rem;
+        padding: 6px 14px;
+    }
+
+    .event-player {
+        font-size: 1rem;
+
+        .player-avatar {
+            width: 36px;
+            height: 36px;
+        }
+    }
+
+    .event-item-actions {
+        width: 100%;
+        justify-content: flex-end;
+        gap: 12px;
+
+        button {
+            min-width: 48px;
+            min-height: 48px;
+        }
+    }
+
+    .events-list {
+        max-height: 300px;
+        padding: 4px;
+    }
+
+    .list-header {
+        font-size: 1rem;
+    }
+
+    .section-title {
+        font-size: 1.1rem;
+
+        .title-icon {
+            font-size: 24px;
+            width: 24px;
+            height: 24px;
+        }
+    }
 }

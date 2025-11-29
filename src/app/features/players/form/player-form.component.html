@@ -2,58 +2,98 @@
 </h2>
 <mat-dialog-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>{{ 'COMMON.NAME' | translate }}</mat-label>
-            <input matInput formControlName="name" placeholder="Ex. John Doe">
-            <mat-error *ngIf="form.get('name')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
-                }}</mat-error>
-        </mat-form-field>
+        <!-- Personal Information Section -->
+        <div class="form-section">
+            <h3 class="section-title">{{ 'PLAYERS.PERSONAL_INFO' | translate }}</h3>
 
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>{{ 'PLAYERS.POSITION' | translate }}</mat-label>
-            <mat-select formControlName="roleId">
-                <mat-option *ngFor="let role of roles" [value]="role.id">
-                    {{ role.name }} ({{ role.acronym }})
-                </mat-option>
-            </mat-select>
-            <mat-error *ngIf="form.get('roleId')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
-                }}</mat-error>
-        </mat-form-field>
-
-        <div class="row">
-            <mat-form-field appearance="outline" class="half-width">
-                <mat-label>Skill (0-100)</mat-label>
-                <input matInput type="number" formControlName="skill" min="0" max="100">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>{{ 'COMMON.NAME' | translate }}</mat-label>
+                <input matInput formControlName="name" placeholder="Ex. John Doe">
+                <mat-error *ngIf="form.get('name')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                    }}</mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="outline" class="half-width">
-                <mat-label>Physique (0-100)</mat-label>
-                <input matInput type="number" formControlName="physique" min="0" max="100">
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>{{ 'PLAYERS.BIRTHDATE' | translate }}</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="birthDate">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
+
+            <div class="row">
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>{{ 'COMMON.EMAIL' | translate }}</mat-label>
+                    <input matInput formControlName="email" type="email">
+                    <mat-error *ngIf="form.get('email')?.hasError('email')">{{ 'COMMON.INVALID_EMAIL' | translate
+                        }}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>{{ 'COMMON.PHONE' | translate }}</mat-label>
+                    <input matInput formControlName="phone">
+                </mat-form-field>
+            </div>
         </div>
 
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>{{ 'COMMON.EMAIL' | translate }}</mat-label>
-            <input matInput formControlName="email" type="email">
-            <mat-error *ngIf="form.get('email')?.hasError('email')">{{ 'COMMON.INVALID_EMAIL' | translate }}</mat-error>
-        </mat-form-field>
+        <!-- Player Position Section -->
+        <div class="form-section">
+            <h3 class="section-title">{{ 'PLAYERS.PLAYER_DETAILS' | translate }}</h3>
 
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>{{ 'COMMON.PHONE' | translate }}</mat-label>
-            <input matInput formControlName="phone">
-        </mat-form-field>
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>{{ 'PLAYERS.POSITION' | translate }}</mat-label>
+                <mat-select formControlName="roleId">
+                    <mat-option *ngFor="let role of roles" [value]="role.id">
+                        {{ role.name }} ({{ role.acronym }})
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="form.get('roleId')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                    }}</mat-error>
+            </mat-form-field>
 
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>{{ 'PLAYERS.BIRTHDATE' | translate }}</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="birthDate">
-            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+            <div class="row">
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>{{ 'PLAYERS.SKILL' | translate }} (0-100)</mat-label>
+                    <input matInput type="number" formControlName="skill" min="0" max="100">
+                </mat-form-field>
 
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>{{ 'COMMON.IMAGE' | translate }}</mat-label>
-            <input matInput formControlName="imagePath">
-        </mat-form-field>
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>{{ 'PLAYERS.PHYSIQUE' | translate }} (0-100)</mat-label>
+                    <input matInput type="number" formControlName="physique" min="0" max="100">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- Image Section with Preview -->
+        <div class="form-section">
+            <h3 class="section-title">{{ 'PLAYERS.PLAYER_IMAGE' | translate }}</h3>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>{{ 'COMMON.IMAGE' | translate }}</mat-label>
+                <input matInput formControlName="imagePath" (input)="onImagePathChange()">
+                <mat-hint>{{ 'PLAYERS.IMAGE_HINT' | translate }}</mat-hint>
+            </mat-form-field>
+
+            <!-- Image Preview Card -->
+            <div class="image-preview-card" *ngIf="imagePreview">
+                <div class="preview-header">
+                    <span class="preview-label">{{ 'COMMON.PREVIEW' | translate }}</span>
+                </div>
+                <div class="preview-content">
+                    <img [src]="imagePreview" [alt]="form.get('name')?.value || 'Player'" (error)="onImageError()">
+                    <div class="player-info-overlay" *ngIf="form.get('name')?.value">
+                        <span class="player-name">{{ form.get('name')?.value }}</span>
+                        <span class="player-role" *ngIf="form.get('roleId')?.value">
+                            {{ getRoleAcronym(form.get('roleId')?.value) }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="no-preview-message" *ngIf="!imagePreview">
+                <mat-icon>image</mat-icon>
+                <p>{{ 'PLAYERS.NO_IMAGE_PREVIEW' | translate }}</p>
+            </div>
+        </div>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

@@ -2,111 +2,482 @@
 @use '../../../../_theme-colors' as theme;
 
 .detail-container {
-    padding: 24px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
     animation: fadeIn 0.4s ease-out;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
 
-    h1,
-    h2 {
-        background: theme.$gradient-primary;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-weight: 700;
+    @media (max-width: 768px) {
+        padding: 12px;
     }
 }
 
-// Back button styling
-button[mat-icon-button] {
+// Back Button
+.back-button {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 8px 16px !important;
+    border-radius: 8px !important;
+    background: rgba(0, 121, 107, 0.08) !important;
+    color: rgba(0, 121, 107, 0.9) !important;
     transition: all theme.$transition-normal ease-in-out;
+    font-weight: 600;
+    text-transform: none !important;
+    line-height: 1.5 !important;
 
-    &:hover {
-        transform: scale(1.1);
-        background: rgba(0, 121, 107, 0.1);
-    }
-}
-
-// Info cards
-mat-card {
-    margin-bottom: 20px;
-    border-radius: 12px;
-    box-shadow: theme.$shadow-md;
-    transition: all theme.$transition-normal ease-in-out;
-    background: white;
-    border: 1px solid rgba(0, 121, 107, 0.1);
-
-    &:hover {
-        transform: translateY(-4px);
-        box-shadow: theme.$shadow-lg;
-        border-color: rgba(0, 121, 107, 0.3);
+    @media (max-width: 768px) {
+        padding: 8px 12px !important;
+        margin-bottom: 12px;
     }
 
-    mat-card-title {
-        background: theme.$gradient-primary;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        font-weight: 600;
+    mat-icon {
+        margin: 0;
     }
 
-    mat-card-content {
-        animation: fadeIn 0.5s ease-out;
+    .back-text {
+        font-size: 14px;
 
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            transition: all theme.$transition-fast ease-in-out;
-
-            &:hover {
-                background: rgba(0, 121, 107, 0.03);
-                padding-left: 8px;
-            }
-
-            &:last-child {
-                border-bottom: none;
-            }
-
-            .label {
-                font-weight: 600;
-                color: rgba(0, 0, 0, 0.7);
-            }
-
-            .value {
-                color: rgba(0, 0, 0, 0.9);
-            }
+        @media (max-width: 480px) {
+            display: none;
         }
     }
-}
 
-.dark-theme mat-card {
-    background: rgba(33, 33, 33, 0.8);
-    border-color: rgba(38, 166, 154, 0.2);
-
-    mat-card-content {
-        .info-row {
-            border-bottom-color: rgba(255, 255, 255, 0.05);
-
-            &:hover {
-                background: rgba(38, 166, 154, 0.08);
-            }
-
-            .label {
-                color: rgba(255, 255, 255, 0.7);
-            }
-
-            .value {
-                color: rgba(255, 255, 255, 0.9);
-            }
-        }
+    &:hover {
+        background: rgba(0, 121, 107, 0.15) !important;
+        transform: translateX(-4px);
     }
 }
 
 // Loading state
 .loading-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    min-height: 300px;
+    justify-content: center;
+    min-height: 400px;
+    gap: 20px;
     animation: fadeIn 0.3s ease-out;
+
+    p {
+        color: rgba(0, 121, 107, 0.8);
+        font-size: 16px;
+        font-weight: 500;
+    }
+}
+
+// Scoreboard Card
+.scoreboard-card {
+    margin-bottom: 24px;
+    border-radius: 16px;
+    box-shadow: theme.$shadow-md;
+    transition: all theme.$transition-normal ease-in-out;
+    background: white;
+    border: 2px solid rgba(0, 121, 107, 0.15);
+    overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: theme.$shadow-lg;
+        border-color: rgba(0, 121, 107, 0.3);
+    }
+
+    mat-card-header {
+        background: theme.$gradient-primary;
+        color: white;
+        padding: 16px 20px;
+
+        mat-card-title {
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+            margin: 0;
+        }
+
+        mat-card-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 4px;
+        }
+    }
+
+    mat-card-content {
+        padding: 24px;
+
+        @media (max-width: 768px) {
+            padding: 16px;
+        }
+    }
+}
+
+.scoreboard {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 16px;
+    padding: 20px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .team {
+        flex: 1;
+        text-align: center;
+        animation: slideInLeft 0.5s ease-out;
+
+        &.team-b {
+            animation: slideInRight 0.5s ease-out;
+        }
+
+        .team-name {
+            font-size: 20px;
+            font-weight: 700;
+            background: theme.$gradient-primary;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+
+            @media (max-width: 768px) {
+                font-size: 18px;
+            }
+        }
+
+        .score {
+            font-size: 56px;
+            font-weight: 800;
+            color: rgba(0, 121, 107, 0.9);
+            line-height: 1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
+            @media (max-width: 768px) {
+                font-size: 40px;
+            }
+        }
+    }
+
+    .vs-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 24px;
+        color: rgba(0, 0, 0, 0.4);
+        padding: 0 16px;
+
+        @media (max-width: 768px) {
+            padding: 8px 0;
+            font-size: 20px;
+        }
+
+        span {
+            padding: 8px 16px;
+            background: rgba(0, 121, 107, 0.08);
+            border-radius: 8px;
+        }
+    }
+}
+
+// Events Card
+.events-card {
+    border-radius: 16px;
+    box-shadow: theme.$shadow-md;
+    transition: all theme.$transition-normal ease-in-out;
+    background: white;
+    border: 2px solid rgba(0, 121, 107, 0.15);
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: theme.$shadow-lg;
+        border-color: rgba(0, 121, 107, 0.3);
+    }
+
+    mat-card-header {
+        background: theme.$gradient-primary;
+        color: white;
+        padding: 16px 20px;
+
+        mat-card-title {
+            color: white;
+            font-weight: 700;
+            font-size: 20px;
+            margin: 0;
+        }
+    }
+
+    mat-card-content {
+        padding: 0;
+    }
+}
+
+.events-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.event-item {
+    display: flex;
+    align-items: center;
+    padding: 16px 20px;
+    gap: 16px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all theme.$transition-fast ease-in-out;
+    animation: fadeInUp 0.4s ease-out;
+
+    @media (max-width: 768px) {
+        padding: 12px 16px;
+        gap: 12px;
+    }
+
+    &:last-child {
+        border-bottom: none;
+    }
+
+    &:hover {
+        background: rgba(0, 121, 107, 0.04);
+        transform: translateX(4px);
+    }
+
+    .event-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: rgba(0, 121, 107, 0.1);
+        flex-shrink: 0;
+
+        @media (max-width: 768px) {
+            width: 40px;
+            height: 40px;
+        }
+
+        mat-icon {
+            font-size: 28px;
+            width: 28px;
+            height: 28px;
+
+            @media (max-width: 768px) {
+                font-size: 24px;
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    .event-details {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        .event-type {
+            mat-chip {
+                font-weight: 600;
+                height: 28px;
+                font-size: 13px;
+            }
+        }
+
+        .event-player {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(0, 0, 0, 0.7);
+            font-size: 14px;
+
+            .inline-icon {
+                font-size: 18px;
+                width: 18px;
+                height: 18px;
+                color: rgba(0, 0, 0, 0.5);
+            }
+        }
+    }
+
+    .event-time {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4px;
+        flex-shrink: 0;
+
+        .time-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: rgba(0, 0, 0, 0.5);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .time-value {
+            font-size: 16px;
+            font-weight: 700;
+            color: rgba(0, 121, 107, 0.9);
+        }
+    }
+}
+
+.no-events {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    color: rgba(0, 0, 0, 0.4);
+    gap: 12px;
+
+    @media (max-width: 768px) {
+        padding: 40px 20px;
+    }
+
+    mat-icon {
+        font-size: 48px;
+        width: 48px;
+        height: 48px;
+        opacity: 0.5;
+    }
+
+    p {
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0;
+    }
+}
+
+// Dark Theme Overrides
+:host-context(.dark-theme) {
+    .back-button {
+        background: rgba(38, 166, 154, 0.12) !important;
+        color: rgba(38, 166, 154, 0.95) !important;
+
+        &:hover {
+            background: rgba(38, 166, 154, 0.2) !important;
+        }
+    }
+
+    .scoreboard-card,
+    .events-card {
+        background: rgba(33, 33, 33, 0.95);
+        border-color: rgba(38, 166, 154, 0.25);
+    }
+
+    .scoreboard {
+        .team {
+            .score {
+                color: rgba(38, 166, 154, 0.95);
+            }
+        }
+
+        .vs-divider {
+            color: rgba(255, 255, 255, 0.5);
+
+            span {
+                background: rgba(38, 166, 154, 0.15);
+            }
+        }
+    }
+
+    .event-item {
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+
+        &:hover {
+            background: rgba(38, 166, 154, 0.1);
+        }
+
+        .event-icon {
+            background: rgba(38, 166, 154, 0.15);
+        }
+
+        .event-details {
+            .event-player {
+                color: rgba(255, 255, 255, 0.8);
+
+                .inline-icon {
+                    color: rgba(255, 255, 255, 0.5);
+                }
+            }
+        }
+
+        .event-time {
+            .time-label {
+                color: rgba(255, 255, 255, 0.5);
+            }
+
+            .time-value {
+                color: rgba(38, 166, 154, 0.95);
+            }
+        }
+    }
+
+    .no-events {
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .loading-container {
+        p {
+            color: rgba(38, 166, 154, 0.9);
+        }
+    }
+}
+
+// Animations
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }

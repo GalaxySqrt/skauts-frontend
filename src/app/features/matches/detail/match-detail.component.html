@@ -1,24 +1,73 @@
-<div class="detail-container" *ngIf="match">
-    <mat-card>
-        <mat-card-header>
-            <mat-card-title>{{ 'MATCHES.DETAILS_TITLE' | translate }}</mat-card-title>
-            <mat-card-subtitle>
-                {{ match.date | date:'medium' }}
-            </mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-            <p>{{ 'MATCHES.TEAM_A' | translate }}: {{ match.teamAId }}</p>
-            <p>{{ 'MATCHES.TEAM_B' | translate }}: {{ match.teamBId }}</p>
+<div class="detail-container">
+    <!-- Back Button -->
+    <button mat-button class="back-button" routerLink="/dashboard/matches">
+        <mat-icon>arrow_back</mat-icon>
+        <span class="back-text">{{ 'COMMON.BACK' | translate }}</span>
+    </button>
 
-            <h3>{{ 'MATCHES.EVENTS_TITLE' | translate }}</h3>
-            <mat-list>
-                <mat-list-item *ngFor="let event of events">
-                    <span matListItemTitle>{{ 'MATCHES.EVENT_TYPE' | translate }}: {{ event.eventTypeId }}</span>
-                    <span matListItemLine>{{ 'MATCHES.PLAYER' | translate }}: {{ event.playerId }}</span>
-                    <span matListItemLine>{{ 'MATCHES.TIME' | translate }}: {{ event.eventTime }}</span>
-                </mat-list-item>
-                <mat-list-item *ngIf="events.length === 0">{{ 'MATCHES.NO_EVENTS' | translate }}</mat-list-item>
-            </mat-list>
-        </mat-card-content>
-    </mat-card>
+    <!-- Loading State -->
+    <div *ngIf="loading" class="loading-container">
+        <mat-spinner></mat-spinner>
+        <p>{{ 'COMMON.LOADING' | translate }}</p>
+    </div>
+
+    <!-- Match Details -->
+    <div *ngIf="!loading && match">
+        <!-- Scoreboard Card -->
+        <mat-card class="scoreboard-card">
+            <mat-card-header>
+                <mat-card-title>{{ 'MATCHES.SCOREBOARD' | translate }}</mat-card-title>
+                <mat-card-subtitle>{{ match.date | date:'medium' }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="scoreboard">
+                    <div class="team team-a">
+                        <h2 class="team-name">{{ teamAName }}</h2>
+                        <div class="score">{{ goalsTeamA }}</div>
+                    </div>
+                    <div class="vs-divider">
+                        <span>{{ 'MATCHES.VS' | translate }}</span>
+                    </div>
+                    <div class="team team-b">
+                        <h2 class="team-name">{{ teamBName }}</h2>
+                        <div class="score">{{ goalsTeamB }}</div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+
+        <!-- Events Card -->
+        <mat-card class="events-card">
+            <mat-card-header>
+                <mat-card-title>{{ 'MATCHES.EVENTS_TITLE' | translate }}</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="events-list" *ngIf="events.length > 0">
+                    <div class="event-item" *ngFor="let event of events">
+                        <div class="event-icon">
+                            <mat-icon [color]="getEventColor(event.eventTypeName)">{{ event.eventTypeIcon }}</mat-icon>
+                        </div>
+                        <div class="event-details">
+                            <div class="event-type">
+                                <mat-chip [color]="getEventColor(event.eventTypeName)">{{ event.eventTypeName
+                                    }}</mat-chip>
+                            </div>
+                            <div class="event-player">
+                                <mat-icon class="inline-icon">person</mat-icon>
+                                <span>{{ event.playerName }}</span>
+                            </div>
+                        </div>
+                        <div class="event-time">
+                            <span class="time-label">{{ 'MATCHES.MINUTE' | translate }}</span>
+                            <span class="time-value">{{ event.eventTime | date:'HH:mm' }}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="no-events" *ngIf="events.length === 0">
+                    <mat-icon>event_note</mat-icon>
+                    <p>{{ 'MATCHES.NO_EVENTS' | translate }}</p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
 </div>

@@ -15,7 +15,8 @@
         "SEARCH": "Buscar",
         "ACTIONS": "Ações",
         "CREATE_NEW": "Adicionar",
-        "FILTER": "Filtrar",
+        "CREATED_AT": "Criado em",
+        "FILTER": "Pesquisar",
         "NAME": "Nome",
         "DESCRIPTION": "Descrição",
         "DATE": "Data",
@@ -42,7 +43,38 @@
         "REQUIRED_FIELD": "Este campo é obrigatório",
         "INVALID_EMAIL": "Por favor, insira um e-mail válido",
         "MIN_LENGTH": "Deve ter pelo menos {{value}} caracteres",
-        "SEARCH_PLACEHOLDER": "Ex. Buscar..."
+        "SEARCH_PLACEHOLDER": "Ex. Buscar...",
+        "PREVIEW": "Pré-visualização",
+        "UPDATE": "Atualizar"
+    },
+    "DASHBOARD": {
+        "WELCOME": "Bem-vindo",
+        "SUBTITLE": "Aqui está o resumo da sua organização",
+        "MATCHES": "Partidas",
+        "CHAMPIONSHIPS": "Campeonatos",
+        "PLAYERS": "Jogadores",
+        "TOP_SCORERS": "Artilheiros",
+        "TOP_ASSISTERS": "Líderes de Assistências",
+        "RANK": "Pos",
+        "PLAYER": "Jogador",
+        "GOALS": "Qtd de Gols",
+        "ASSISTS": "Assists",
+        "TOTAL_GOALS": "Total de Gols",
+        "NO_DATA": "Nenhum dado disponível"
+    },
+    "CHAMPIONSHIPS": {
+        "TITLE": "Campeonatos",
+        "DETAIL_TITLE": "Detalhes do Campeonato",
+        "FORM_TITLE_ADD": "Adicionar Campeonato",
+        "FORM_TITLE_EDIT": "Editar Campeonato",
+        "NAME_PLACEHOLDER": "Ex. Campeonato de Futsal",
+        "IMAGE_PLACEHOLDER": "URL da logo",
+        "IMAGE_PATH": "Caminho da Imagem",
+        "START_DATE": "Data de Início",
+        "END_DATE": "Data de Término",
+        "STATUS": "Status",
+        "STATUS_ACTIVE": "Ativo",
+        "STATUS_INACTIVE": "Inativo"
     },
     "LANGUAGES": {
         "PT": "Português",
@@ -70,29 +102,23 @@
         "SUBTITLE": "Por favor, selecione uma organização para continuar",
         "BUTTON": "Selecionar"
     },
-    "CHAMPIONSHIPS": {
-        "TITLE": "Campeonatos",
-        "DETAIL_TITLE": "Detalhes do Campeonato",
-        "FORM_TITLE_ADD": "Adicionar Campeonato",
-        "FORM_TITLE_EDIT": "Editar Campeonato"
-    },
-    "TEAMS": {
-        "TITLE": "Times",
-        "DETAIL_TITLE": "Detalhes do Time",
-        "FORM_TITLE_ADD": "Adicionar Time",
-        "FORM_TITLE_EDIT": "Editar Time",
-        "FOUNDED": "Fundado",
-        "WEBSITE": "Site"
-    },
     "PLAYERS": {
-        "TITLE": "Jogadores",
         "DETAIL_TITLE": "Detalhes do Jogador",
         "FORM_TITLE_ADD": "Adicionar Jogador",
         "FORM_TITLE_EDIT": "Editar Jogador",
         "POSITION": "Posição",
         "NUMBER": "Número",
         "BIRTHDATE": "Data de Nascimento",
-        "NATIONALITY": "Nacionalidade"
+        "NATIONALITY": "Nacionalidade",
+        "PERSONAL_INFO": "Informações Pessoais",
+        "PLAYER_DETAILS": "Detalhes do Jogador",
+        "PLAYER_IMAGE": "Imagem do Jogador",
+        "SKILL": "Habilidade",
+        "PHYSIQUE": "Físico",
+        "IMAGE_HINT": "Cole o URL da imagem do jogador",
+        "NO_IMAGE_PREVIEW": "Nenhuma imagem para visualizar",
+        "TITLE": "Jogadores",
+        "DESCRIPTION": "Descrição"
     },
     "PRIZES": {
         "PLAYER": "Jogador",
@@ -100,6 +126,13 @@
         "RECEIVE_DATE": "Data",
         "ADD_PRIZE": "Adicionar Prêmio",
         "EDIT_PRIZE": "Editar Prêmio"
+    },
+    "PLAYERS_PRIZES": {
+        "ADD_PRIZE": "Adicionar Prêmio",
+        "EDIT_PRIZE": "Editar Prêmio",
+        "PLAYER": "Jogador",
+        "PRIZE_TYPE": "Tipo de Prêmio",
+        "RECEIVE_DATE": "Data"
     },
     "MATCHES": {
         "TITLE": "Partidas",
@@ -112,19 +145,73 @@
         "LOCATION": "Local",
         "ROUND": "Rodada",
         "TEAM_A": "Time A",
-        "TEAM_B": "Time B"
+        "TEAM_B": "Time B",
+        "NONE_FRIENDLY": "Nenhum (Amistoso)",
+        "TIME": "Hora",
+        "STATUS": "Status",
+        "STATUS_ACTIVE": "Ativo",
+        "STATUS_INACTIVE": "Inativo",
+        "EVENT_TYPE": "Tipo de Evento",
+        "EVENT_TYPE_PLACEHOLDER": "Ex. Partida",
+        "EVENT_TYPE_DESCRIPTION": "Descrição do Evento",
+        "EVENT_TYPE_DESCRIPTION_PLACEHOLDER": "Ex. Partida de Futsal",
+        "DETAILS_TITLE": "Detalhes da partida",
+        "EVENTS_TITLE": "Eventos",
+        "EVENTS_DETAIL_TITLE": "Detalhes do Evento",
+        "PLAYER": "Jogador",
+        "NO_EVENTS": "Nenhum evento adicionado",
+        "GOALS_TEAM_A": "Gols Time A",
+        "GOALS_TEAM_B": "Gols Time B",
+        "SCOREBOARD": "Placar",
+        "MINUTE": "Minuto",
+        "VS": "vs",
+        "ADD_EVENT": "Adicionar Evento",
+        "EDIT_EVENT": "Editar Evento",
+        "DELETE_EVENT": "Excluir Evento",
+        "EVENT": "Evento",
+        "EVENT_TIME": "Horário do Evento",
+        "SELECT_PLAYER": "Selecione um jogador",
+        "SELECT_EVENT_TYPE": "Selecione o tipo de evento",
+        "SAVE_MATCH_FIRST": "Salve a partida primeiro para adicionar eventos",
+        "CONFIRM_DELETE_EVENT": "Tem certeza de que deseja excluir este evento?"
+    },
+    "TEAMS": {
+        "TITLE": "Times",
+        "DETAIL_TITLE": "Detalhes do Time",
+        "FILTER_BY_DATE": "Filtrar por Data",
+        "FORM_TITLE_ADD": "Adicionar Time",
+        "FORM_TITLE_EDIT": "Editar Time",
+        "FOUNDED": "Fundado",
+        "WEBSITE": "Site",
+        "TEAM_INFO": "Informações do Time",
+        "ROSTER": "Equipe",
+        "ROSTER_MANAGEMENT": "Gestão de Equipe",
+        "ADD_PLAYER": "Adicionar Jogador",
+        "CURRENT_PLAYERS": "Jogadores Atuais",
+        "AVAILABLE_PLAYERS": "Jogadores Disponíveis",
+        "JOIN_DATE": "Data de Entrada",
+        "NO_PLAYERS": "Nenhum jogador no time",
+        "SELECT_PLAYER": "Selecione um jogador",
+        "REMOVE_PLAYER": "Remover jogador",
+        "CONFIRM_REMOVE": "Tem certeza de que deseja remover este jogador do time?",
+        "SAVE_TEAM_FIRST": "Salve o time primeiro para adicionar jogadores"
     },
     "ORGANIZATIONS": {
         "TITLE": "Organizações",
         "DETAIL_TITLE": "Detalhes da Organização",
         "FORM_TITLE_ADD": "Adicionar Organização",
-        "FORM_TITLE_EDIT": "Editar Organização"
+        "FORM_TITLE_EDIT": "Editar Organização",
+        "NAME_PLACEHOLDER": "Ex. Meu Clube",
+        "IMAGE_PLACEHOLDER": "URL da logo",
+        "IMAGE_PATH": "Caminho da Imagem",
+        "SWITCH": "Trocar"
     },
     "EVENT_TYPES": {
         "TITLE": "Tipos de Evento",
         "DETAIL_TITLE": "Detalhes do Tipo de Evento",
         "FORM_TITLE_ADD": "Adicionar Tipo de Evento",
         "FORM_TITLE_EDIT": "Editar Tipo de Evento",
-        "ICON": "Ícone"
+        "ICON": "Ícone",
+        "NAME_PLACEHOLDER": "Ex. Gol"
     }
 }

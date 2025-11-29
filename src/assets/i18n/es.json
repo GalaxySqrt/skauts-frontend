@@ -2,8 +2,8 @@
     "COMMON": {
         "LOGIN": "Iniciar sesión",
         "LOGOUT": "Cerrar sesión",
-        "DASHBOARD": "Tablero",
-        "SETTINGS": "Configuraciones",
+        "DASHBOARD": "Panel",
+        "SETTINGS": "Configuración",
         "PROFILE": "Perfil",
         "LANGUAGE": "Idioma",
         "THEME": "Tema",
@@ -11,11 +11,12 @@
         "SAVE": "Guardar",
         "DELETE": "Eliminar",
         "EDIT": "Editar",
-        "ADD": "Añadir",
+        "ADD": "Agregar",
         "SEARCH": "Buscar",
         "ACTIONS": "Acciones",
-        "CREATE_NEW": "Add",
-        "FILTER": "Filtrar",
+        "CREATE_NEW": "Agregar",
+        "CREATED_AT": "Creado en",
+        "FILTER": "Buscar",
         "NAME": "Nombre",
         "DESCRIPTION": "Descripción",
         "DATE": "Fecha",
@@ -23,7 +24,7 @@
         "END_DATE": "Fecha de Fin",
         "TYPE": "Tipo",
         "STATUS": "Estado",
-        "EMAIL": "Correo electrónico",
+        "EMAIL": "Correo",
         "PASSWORD": "Contraseña",
         "PHONE": "Teléfono",
         "ADDRESS": "Dirección",
@@ -33,16 +34,18 @@
         "IMAGE": "Imagen",
         "BACK": "Volver",
         "SUBMIT": "Enviar",
-        "RESET": "Reiniciar",
+        "RESET": "Restablecer",
         "CONFIRM": "Confirmar",
         "YES": "Sí",
         "NO": "No",
         "LOADING": "Cargando...",
         "NO_DATA": "No hay datos que coincidan con el filtro",
         "REQUIRED_FIELD": "Este campo es obligatorio",
-        "INVALID_EMAIL": "Por favor ingrese un correo electrónico válido",
+        "INVALID_EMAIL": "Por favor, introduzca una dirección de correo válida",
         "MIN_LENGTH": "Debe tener al menos {{value}} caracteres",
-        "SEARCH_PLACEHOLDER": "Ej. Buscar..."
+        "SEARCH_PLACEHOLDER": "Ej. Buscar...",
+        "PREVIEW": "Vista previa",
+        "UPDATE": "Actualizar"
     },
     "LANGUAGES": {
         "PT": "Portugués",
@@ -50,7 +53,7 @@
         "ES": "Español"
     },
     "MENU": {
-        "DASHBOARD": "Tablero",
+        "DASHBOARD": "Panel",
         "CHAMPIONSHIPS": "Campeonatos",
         "ORGANIZATIONS": "Organizaciones",
         "PLAYERS": "Jugadores",
@@ -60,51 +63,93 @@
         "EVENT_TYPES": "Tipos de Evento"
     },
     "LOGIN": {
-        "TITLE": "Skauts Login",
+        "TITLE": "Inicio de sesión Skauts",
         "EMAIL_PLACEHOLDER": "Ej. usuario@ejemplo.com",
         "BUTTON": "Entrar",
-        "LOGGING_IN": "Entrando..."
+        "LOGGING_IN": "Iniciando sesión..."
     },
     "ORG_SELECTION": {
         "TITLE": "Seleccionar Organización",
-        "SUBTITLE": "Por favor seleccione una organización para continuar",
+        "SUBTITLE": "Por favor, seleccione una organización para continuar",
         "BUTTON": "Seleccionar"
     },
     "CHAMPIONSHIPS": {
         "TITLE": "Campeonatos",
         "DETAIL_TITLE": "Detalles del Campeonato",
-        "FORM_TITLE_ADD": "Añadir Campeonato",
+        "FORM_TITLE_ADD": "Agregar Campeonato",
         "FORM_TITLE_EDIT": "Editar Campeonato"
+    },
+    "DASHBOARD": {
+        "WELCOME": "Bienvenido",
+        "SUBTITLE": "Aqui está el resumen de su organización",
+        "MATCHES": "Partidas",
+        "CHAMPIONSHIPS": "Campeonatos",
+        "PLAYERS": "Jugadores",
+        "TOP_SCORERS": "Arbitros",
+        "TOP_ASSISTERS": "Líderes de Asistencias",
+        "RANK": "Pos",
+        "PLAYER": "Jugador",
+        "GOALS": "Goles",
+        "ASSISTS": "Asistencias",
+        "TOTAL_GOALS": "Total de Gols",
+        "NO_DATA": "No hay datos disponibles"
     },
     "TEAMS": {
         "TITLE": "Equipos",
         "DETAIL_TITLE": "Detalles del Equipo",
-        "FORM_TITLE_ADD": "Añadir Equipo",
+        "FILTER_BY_DATE": "Filtrar por Equipo",
+        "FORM_TITLE_ADD": "Agregar Equipo",
         "FORM_TITLE_EDIT": "Editar Equipo",
         "FOUNDED": "Fundado",
-        "WEBSITE": "Sitio Web"
+        "WEBSITE": "Sitio web",
+        "TEAM_INFO": "Información del Equipo",
+        "ROSTER": "Plantilla",
+        "ROSTER_MANAGEMENT": "Gestión de Plantilla",
+        "ADD_PLAYER": "Agregar Jugador",
+        "CURRENT_PLAYERS": "Jugadores Actuales",
+        "AVAILABLE_PLAYERS": "Jugadores Disponibles",
+        "JOIN_DATE": "Fecha de Entrada",
+        "NO_PLAYERS": "No hay jugadores en el equipo",
+        "SELECT_PLAYER": "Seleccione un jugador",
+        "REMOVE_PLAYER": "Eliminar jugador",
+        "CONFIRM_REMOVE": "¿Está seguro de que desea eliminar este jugador del equipo?",
+        "SAVE_TEAM_FIRST": "Guarde el equipo primero para agregar jugadores"
     },
     "PLAYERS": {
         "TITLE": "Jugadores",
         "DETAIL_TITLE": "Detalles del Jugador",
-        "FORM_TITLE_ADD": "Añadir Jugador",
+        "FORM_TITLE_ADD": "Agregar Jugador",
         "FORM_TITLE_EDIT": "Editar Jugador",
         "POSITION": "Posición",
         "NUMBER": "Número",
         "BIRTHDATE": "Fecha de Nacimiento",
-        "NATIONALITY": "Nacionalidad"
+        "NATIONALITY": "Nacionalidad",
+        "PERSONAL_INFO": "Información Personal",
+        "PLAYER_DETAILS": "Detalles del Jugador",
+        "PLAYER_IMAGE": "Imaagen del Jugador",
+        "SKILL": "Habilidad",
+        "PHYSIQUE": "Físico",
+        "IMAGE_HINT": "Pegue la URL de la imagen del jugador",
+        "NO_IMAGE_PREVIEW": "No hay imagen para visualizar"
     },
     "PRIZES": {
         "PLAYER": "Jugador",
         "PRIZE_TYPE": "Tipo de Premio",
         "RECEIVE_DATE": "Fecha",
-        "ADD_PRIZE": "Añadir Premio",
+        "ADD_PRIZE": "Agregar Premio",
         "EDIT_PRIZE": "Editar Premio"
+    },
+    "PLAYERS_PRIZES": {
+        "ADD_PRIZE": "Agregar Premio",
+        "EDIT_PRIZE": "Editar Premio",
+        "PLAYER": "Jugador",
+        "PRIZE_TYPE": "Tipo de Premio",
+        "RECEIVE_DATE": "Fecha"
     },
     "MATCHES": {
         "TITLE": "Partidos",
         "DETAIL_TITLE": "Detalles del Partido",
-        "FORM_TITLE_ADD": "Añadir Partido",
+        "FORM_TITLE_ADD": "Agregar Partido",
         "FORM_TITLE_EDIT": "Editar Partido",
         "HOME_TEAM": "Equipo Local",
         "AWAY_TEAM": "Equipo Visitante",
@@ -112,19 +157,43 @@
         "LOCATION": "Ubicación",
         "ROUND": "Ronda",
         "TEAM_A": "Equipo A",
-        "TEAM_B": "Equipo B"
+        "TEAM_B": "Equipo B",
+        "NONE_FRIENDLY": "Ninguno (Amistoso)",
+        "TIME": "Hora",
+        "EVENT_TYPE": "Tipo de Evento",
+        "PLAYER": "Jugador",
+        "DETAILS_TITLE": "Detalles del Partido",
+        "EVENTS_TITLE": "Eventos",
+        "NO_EVENTS": "No hay eventos agregados",
+        "SCOREBOARD": "Marcador",
+        "MINUTE": "Minuto",
+        "VS": "vs",
+        "ADD_EVENT": "Agregar Evento",
+        "EDIT_EVENT": "Editar Evento",
+        "DELETE_EVENT": "Eliminar Evento",
+        "EVENT": "Evento",
+        "EVENT_TIME": "Hora del Evento",
+        "SELECT_PLAYER": "Seleccione un jugador",
+        "SELECT_EVENT_TYPE": "Seleccione el tipo de evento",
+        "SAVE_MATCH_FIRST": "Guarde el partido primero para agregar eventos",
+        "CONFIRM_DELETE_EVENT": "¿Está seguro de que desea eliminar este evento?"
     },
     "ORGANIZATIONS": {
         "TITLE": "Organizaciones",
         "DETAIL_TITLE": "Detalles de la Organización",
-        "FORM_TITLE_ADD": "Añadir Organización",
-        "FORM_TITLE_EDIT": "Editar Organización"
+        "FORM_TITLE_ADD": "Agregar Organización",
+        "FORM_TITLE_EDIT": "Editar Organización",
+        "NAME_PLACEHOLDER": "Ej. Mi Club",
+        "IMAGE_PLACEHOLDER": "URL del logo",
+        "IMAGE_PATH": "Ruta de Imagen",
+        "SWITCH": "Conmutar"
     },
     "EVENT_TYPES": {
         "TITLE": "Tipos de Evento",
         "DETAIL_TITLE": "Detalles del Tipo de Evento",
-        "FORM_TITLE_ADD": "Añadir Tipo de Evento",
+        "FORM_TITLE_ADD": "Agregar Tipo de Evento",
         "FORM_TITLE_EDIT": "Editar Tipo de Evento",
-        "ICON": "Icono"
+        "ICON": "Ícono",
+        "NAME_PLACEHOLDER": "Ej. Gol"
     }
 }

@@ -37,7 +37,10 @@
             </form>
         </mat-card-content>
     </mat-card>
-    <div class="language-selector-container">
+    <div class="actions-container">
+        <button mat-icon-button (click)="toggleTheme()" aria-label="Toggle theme">
+            <mat-icon>{{ isDarkTheme ? 'light_mode' : 'dark_mode' }}</mat-icon>
+        </button>
         <app-language-selector></app-language-selector>
     </div>
 </div>

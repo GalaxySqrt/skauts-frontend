@@ -11,6 +11,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { UserService } from '../../../core/services/user.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { LanguageSelectorComponent } from '../../../shared/components/language-selector/language-selector.component';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
     selector: 'app-login',
@@ -24,7 +25,8 @@ import { LanguageSelectorComponent } from '../../../shared/components/language-s
         MatButtonModule,
         MatSnackBarModule,
         TranslateModule,
-        LanguageSelectorComponent
+        LanguageSelectorComponent,
+        MatIconModule
     ],
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
@@ -32,6 +34,8 @@ import { LanguageSelectorComponent } from '../../../shared/components/language-s
 export class LoginComponent {
     loginForm: FormGroup;
     isLoading = false;
+
+    isDarkTheme = false;
 
     constructor(
         private fb: FormBuilder,
@@ -44,6 +48,15 @@ export class LoginComponent {
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(6)]]
         });
+    }
+
+    toggleTheme() {
+        this.isDarkTheme = !this.isDarkTheme;
+        if (this.isDarkTheme) {
+            document.body.classList.add('dark-theme');
+        } else {
+            document.body.classList.remove('dark-theme');
+        }
     }
 
     onSubmit() {

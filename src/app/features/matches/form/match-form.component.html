@@ -2,57 +2,182 @@
 </h2>
 <mat-dialog-content>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <div class="row">
-            <mat-form-field appearance="outline" class="half-width">
-                <mat-label>{{ 'MATCHES.TEAM_A' | translate }}</mat-label>
-                <mat-select formControlName="teamAId">
-                    <mat-option *ngFor="let team of teams" [value]="team.id">
-                        {{ team.name }}
-                    </mat-option>
-                </mat-select>
-                <mat-error *ngIf="form.get('teamAId')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
-                    }}</mat-error>
-            </mat-form-field>
+        <!-- Match Information Section -->
+        <div class="form-section">
+            <h3 class="section-title">{{ 'MATCHES.DETAILS_TITLE' | translate }}</h3>
 
-            <mat-form-field appearance="outline" class="half-width">
-                <mat-label>{{ 'MATCHES.TEAM_B' | translate }}</mat-label>
-                <mat-select formControlName="teamBId">
-                    <mat-option *ngFor="let team of teams" [value]="team.id">
-                        {{ team.name }}
+            <div class="row">
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>{{ 'MATCHES.TEAM_A' | translate }}</mat-label>
+                    <mat-select formControlName="teamAId">
+                        <mat-option *ngFor="let team of teams" [value]="team.id">
+                            {{ team.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.get('teamAId')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                        }}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>{{ 'MATCHES.TEAM_B' | translate }}</mat-label>
+                    <mat-select formControlName="teamBId">
+                        <mat-option *ngFor="let team of teams" [value]="team.id">
+                            {{ team.name }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form.get('teamBId')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                        }}</mat-error>
+                </mat-form-field>
+            </div>
+
+            <div class="row">
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>{{ 'COMMON.DATE' | translate }}</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="date">
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="form.get('date')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                        }}</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="half-width">
+                    <mat-label>{{ 'MATCHES.TIME' | translate }}</mat-label>
+                    <input matInput type="time" formControlName="time">
+                    <mat-error *ngIf="form.get('time')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
+                        }}</mat-error>
+                </mat-form-field>
+            </div>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>{{ 'MENU.CHAMPIONSHIPS' | translate }}</mat-label>
+                <mat-select formControlName="championshipId">
+                    <mat-option [value]="null">{{ 'MATCHES.NONE_FRIENDLY' | translate }}</mat-option>
+                    <mat-option *ngFor="let champ of championships" [value]="champ.id">
+                        {{ champ.name }}
                     </mat-option>
                 </mat-select>
-                <mat-error *ngIf="form.get('teamBId')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
-                    }}</mat-error>
             </mat-form-field>
         </div>
 
-        <div class="row">
-            <mat-form-field appearance="outline" class="half-width">
-                <mat-label>{{ 'COMMON.DATE' | translate }}</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="date">
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                <mat-error *ngIf="form.get('date')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
-                    }}</mat-error>
-            </mat-form-field>
+        <!-- Events Section (Only in Edit Mode) -->
+        <div class="form-section events-section" *ngIf="isEditMode">
+            <div class="section-header">
+                <h3 class="section-title">
+                    <mat-icon class="title-icon">event</mat-icon>
+                    {{ 'MATCHES.EVENTS_TITLE' | translate }}
+                </h3>
+            </div>
 
-            <mat-form-field appearance="outline" class="half-width">
-                <mat-label>{{ 'MATCHES.TIME' | translate }}</mat-label>
-                <input matInput type="time" formControlName="time">
-                <mat-error *ngIf="form.get('time')?.hasError('required')">{{ 'COMMON.REQUIRED_FIELD' | translate
-                    }}</mat-error>
-            </mat-form-field>
+            <!-- Add/Edit Event Form -->
+            <div class="event-form-container" [formGroup]="eventForm">
+                <div class="event-form-grid">
+                    <mat-form-field appearance="outline" class="event-field">
+                        <mat-label>{{ 'MATCHES.SELECT_PLAYER' | translate }}</mat-label>
+                        <mat-select formControlName="playerId">
+                            <mat-option *ngFor="let player of players" [value]="player.id">
+                                {{ player.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-icon matPrefix>person</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="event-field">
+                        <mat-label>{{ 'MATCHES.SELECT_EVENT_TYPE' | translate }}</mat-label>
+                        <mat-select formControlName="eventTypeId">
+                            <mat-option *ngFor="let eventType of eventTypes" [value]="eventType.id">
+                                {{ eventType.name }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-icon matPrefix>sports_soccer</mat-icon>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="event-field">
+                        <mat-label>{{ 'MATCHES.EVENT_TIME' | translate }}</mat-label>
+                        <input matInput type="time" formControlName="eventTime">
+                        <mat-icon matPrefix>schedule</mat-icon>
+                    </mat-form-field>
+
+                    <div class="event-actions">
+                        <button mat-raised-button color="primary" type="button" *ngIf="editingEventIndex === null"
+                            (click)="addEvent()" [disabled]="eventForm.invalid || isLoading" class="action-btn add-btn">
+                            <mat-icon>add_circle</mat-icon>
+                            {{ 'MATCHES.ADD_EVENT' | translate }}
+                        </button>
+
+                        <button mat-raised-button color="accent" type="button" *ngIf="editingEventIndex !== null"
+                            (click)="updateEvent()" [disabled]="eventForm.invalid || isLoading"
+                            class="action-btn update-btn">
+                            <mat-icon>update</mat-icon>
+                            {{ 'COMMON.UPDATE' | translate }}
+                        </button>
+
+                        <button mat-button type="button" *ngIf="editingEventIndex !== null" (click)="cancelEditEvent()"
+                            class="action-btn cancel-btn">
+                            <mat-icon>cancel</mat-icon>
+                            {{ 'COMMON.CANCEL' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events List -->
+            <div class="events-list-container" *ngIf="events.length > 0">
+                <h4 class="list-header">
+                    <mat-icon>list</mat-icon>
+                    {{ 'MATCHES.EVENTS_TITLE' | translate }} ({{ events.length }})
+                </h4>
+                <div class="events-list">
+                    <div class="event-item" *ngFor="let event of events; let i = index"
+                        [class.editing]="editingEventIndex === i">
+                        <div class="event-content">
+                            <div class="event-icon">
+                                <mat-icon>stars</mat-icon>
+                            </div>
+                            <div class="event-details">
+                                <div class="event-type-badge">
+                                    <mat-icon class="badge-icon">{{ event.eventTypeName === 'Gol' ? 'sports_soccer' :
+                                        'event' }}</mat-icon>
+                                    <span class="badge-text">{{ event.eventTypeName }}</span>
+                                </div>
+                                <div class="event-player">
+                                    <img *ngIf="getPlayerImage(event.playerId)" [src]="getPlayerImage(event.playerId)"
+                                        [alt]="event.playerName" class="player-avatar">
+                                    <mat-icon *ngIf="!getPlayerImage(event.playerId)"
+                                        class="player-icon">person</mat-icon>
+                                    <span class="player-name">{{ event.playerName }}</span>
+                                </div>
+                                <div class="event-time">
+                                    <mat-icon class="time-icon">schedule</mat-icon>
+                                    <span class="time-text">{{ event.eventTime | date:'HH:mm' }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="event-item-actions">
+                            <button mat-icon-button color="primary" type="button" (click)="startEditEvent(i)"
+                                [disabled]="editingEventIndex !== null" class="edit-event-btn">
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" type="button" (click)="deleteEvent(i)"
+                                [disabled]="editingEventIndex !== null" class="delete-event-btn">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" *ngIf="events.length === 0">
+                <mat-icon>event_note</mat-icon>
+                <p>{{ 'MATCHES.NO_EVENTS' | translate }}</p>
+            </div>
         </div>
 
-        <mat-form-field appearance="outline" class="full-width">
-            <mat-label>{{ 'MENU.CHAMPIONSHIPS' | translate }}</mat-label>
-            <mat-select formControlName="championshipId">
-                <mat-option [value]="null">{{ 'MATCHES.NONE_FRIENDLY' | translate }}</mat-option>
-                <mat-option *ngFor="let champ of championships" [value]="champ.id">
-                    {{ champ.name }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+        <!-- Message for new matches -->
+        <div class="info-message" *ngIf="!isEditMode">
+            <mat-icon>info</mat-icon>
+            <p>{{ 'MATCHES.SAVE_MATCH_FIRST' | translate }}</p>
+        </div>
     </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">

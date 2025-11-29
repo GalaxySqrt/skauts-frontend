@@ -59,20 +59,21 @@
     background: theme.$gradient-hover-dark;
 }
 
+.filters-container {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
 .filter-field {
-    width: 100%;
-    max-width: 400px;
+    flex: 1;
+    min-width: 250px;
+}
 
-    mat-form-field {
-        transition: all theme.$transition-normal ease-in-out;
-
-        &:focus-within {
-            .mat-mdc-text-field-wrapper {
-                box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.2);
-                border-radius: 4px;
-            }
-        }
-    }
+.date-filter-field {
+    flex: 0 1 300px;
+    min-width: 250px;
 }
 
 .table-container {
@@ -114,7 +115,6 @@ table {
         tr {
             transition: all theme.$transition-normal ease-in-out;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            cursor: pointer;
 
             &:hover {
                 background: theme.$gradient-hover-light;
@@ -127,7 +127,6 @@ table {
                 padding: 16px;
                 transition: all theme.$transition-fast ease-in-out;
 
-                // Action buttons
                 button {
                     transition: all theme.$transition-normal ease-in-out;
                     border-radius: 8px;
@@ -135,16 +134,6 @@ table {
                     &:hover {
                         transform: scale(1.1);
                         box-shadow: theme.$shadow-md;
-                    }
-
-                    &.edit-button:hover {
-                        background: rgba(0, 121, 107, 0.1);
-                        color: mat.m2-get-color-from-palette(theme.$skauts-primary);
-                    }
-
-                    &.delete-button:hover {
-                        background: rgba(244, 67, 54, 0.1);
-                        color: #f44336;
                     }
                 }
             }
@@ -164,48 +153,391 @@ table {
             background: theme.$gradient-hover-dark;
             border-left-color: mat.m2-get-color-from-palette(theme.$skauts-primary, 300);
         }
+
+        td {
+            color: rgba(255, 255, 255, 0.87);
+        }
     }
 }
 
-// Team shield specific styling (for team-list)
-.team-shield {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    border-radius: 8px;
-    box-shadow: theme.$shadow-sm;
+// Expandable Rows
+.element-row {
+    cursor: pointer;
+
+    &.expanded-row {
+        background: theme.$gradient-hover-light;
+        border-left: 4px solid mat.m2-get-color-from-palette(theme.$skauts-primary) !important;
+    }
+}
+
+.dark-theme .element-row.expanded-row {
+    background: theme.$gradient-hover-dark;
+}
+
+.detail-row {
+    height: 0;
+}
+
+.element-detail {
+    overflow: hidden;
+    padding: 0 24px;
+}
+
+// Loading State
+.loading-state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 40px;
+    color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+
+    .spinner {
+        animation: spin 1s linear infinite;
+        font-size: 32px;
+        width: 32px;
+        height: 32px;
+    }
+
+    span {
+        font-weight: 500;
+    }
+}
+
+.dark-theme .loading-state {
+    color: mat.m2-get-color-from-palette(theme.$skauts-primary, 300);
+
+    span {
+        color: rgba(255, 255, 255, 0.87);
+    }
+}
+
+// Players Container
+.players-container {
+    padding: 24px 0;
+    animation: fadeInUp 0.4s ease-out;
+
+    .players-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 0 20px 0;
+        font-size: 16px;
+        font-weight: 600;
+        color: mat.m2-get-color-from-palette(theme.$skauts-primary, 700);
+        padding-left: 4px;
+        border-left: 4px solid mat.m2-get-color-from-palette(theme.$skauts-primary);
+
+        mat-icon {
+            color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+        }
+    }
+}
+
+.dark-theme .players-container .players-header {
+    color: rgba(255, 255, 255, 0.87);
+
+    mat-icon {
+        color: mat.m2-get-color-from-palette(theme.$skauts-primary, 300);
+    }
+}
+
+// Players Grid
+.players-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+}
+
+.player-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: linear-gradient(135deg, rgba(0, 121, 107, 0.05), rgba(0, 121, 107, 0.02));
+    border: 1px solid rgba(0, 121, 107, 0.1);
+    border-radius: 12px;
     transition: all theme.$transition-normal ease-in-out;
 
     &:hover {
-        transform: scale(1.2);
+        background: linear-gradient(135deg, rgba(0, 121, 107, 0.1), rgba(0, 121, 107, 0.05));
+        border-color: rgba(0, 121, 107, 0.3);
+        transform: translateY(-2px);
         box-shadow: theme.$shadow-md;
+    }
+
+    .player-avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: mat.m2-get-color-from-palette(theme.$skauts-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        overflow: hidden;
+        position: relative;
+
+        .player-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .default-icon,
+        mat-icon {
+            color: white;
+            font-size: 28px;
+            width: 28px;
+            height: 28px;
+        }
+    }
+
+    .player-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        flex: 1;
+        min-width: 0;
+
+        .player-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.87);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .player-role {
+            font-size: 13px;
+            font-weight: 500;
+            color: mat.m2-get-color-from-palette(theme.$skauts-primary, 600);
+        }
+
+        .player-join-date {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.6);
+
+            mat-icon {
+                font-size: 14px;
+                width: 14px;
+                height: 14px;
+            }
+        }
     }
 }
 
-// Loading and empty states
-mat-spinner {
-    margin: 40px auto;
+.dark-theme .player-card {
+    background: linear-gradient(135deg, rgba(0, 150, 136, 0.15), rgba(0, 150, 136, 0.08));
+    border-color: rgba(0, 150, 136, 0.25);
+
+    &:hover {
+        background: linear-gradient(135deg, rgba(0, 150, 136, 0.25), rgba(0, 150, 136, 0.15));
+        border-color: rgba(0, 150, 136, 0.4);
+    }
+
+    .player-avatar {
+        background: mat.m2-get-color-from-palette(theme.$skauts-primary, 300);
+    }
+
+    .player-info {
+        .player-name {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .player-role {
+            color: rgba(255, 255, 255, 0.87);
+        }
+
+        .player-join-date {
+            color: rgba(255, 255, 255, 0.7);
+        }
+    }
 }
 
+// Empty State
 .empty-state {
     text-align: center;
-    padding: 60px 20px;
-    animation: fadeIn 0.5s ease-out;
+    padding: 40px 20px;
 
     mat-icon {
-        font-size: 64px;
-        width: 64px;
-        height: 64px;
-        opacity: 0.3;
-        margin-bottom: 16px;
+        font-size: 48px;
+        width: 48px;
+        height: 48px;
+        color: rgba(0, 121, 107, 0.4);
+        margin-bottom: 12px;
     }
 
     p {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 500;
         color: rgba(0, 0, 0, 0.5);
-        font-size: 1.1rem;
     }
 }
 
-.dark-theme .empty-state p {
-    color: rgba(255, 255, 255, 0.5);
+.dark-theme .empty-state {
+    mat-icon {
+        color: rgba(0, 150, 136, 0.6);
+    }
+
+    p {
+        color: rgba(255, 255, 255, 0.6);
+    }
+}
+
+// Mobile Responsiveness
+@media (max-width: 768px) {
+    .list-container {
+        padding: 12px;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+
+        button {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    .filters-container {
+        flex-direction: column;
+    }
+
+    .filter-field,
+    .date-filter-field {
+        flex: 1;
+        min-width: 100%;
+    }
+
+    .table-container {
+        border-radius: 8px;
+    }
+
+    table {
+        thead th {
+            padding: 12px 8px;
+            font-size: 0.75rem;
+        }
+
+        tbody td {
+            padding: 12px 8px;
+        }
+    }
+
+    // Hide created at column on mobile
+    .mat-column-createdAt {
+        display: none;
+    }
+
+    // Make players grid single column on mobile
+    .players-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .player-card {
+        padding: 12px;
+
+        .player-avatar {
+            width: 40px;
+            height: 40px;
+
+            .default-icon,
+            mat-icon {
+                font-size: 24px;
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        .player-info {
+            .player-name {
+                font-size: 14px;
+            }
+
+            .player-role {
+                font-size: 12px;
+            }
+
+            .player-join-date {
+                font-size: 11px;
+            }
+        }
+    }
+
+    .element-detail {
+        padding: 0 12px;
+    }
+
+    .players-container {
+        padding: 16px 0;
+
+        .players-header {
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+    }
+}
+
+// Tablet adjustments
+@media (min-width: 769px) and (max-width: 1024px) {
+    .players-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+// Animations
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }

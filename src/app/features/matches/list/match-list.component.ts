@@ -90,7 +90,7 @@ export class MatchListComponent implements OnInit {
     }
 
     getChampionshipName(champId?: number): string {
-        return champId ? this.championships.get(champId) || 'Unknown' : 'Friendly';
+        return champId ? this.championships.get(champId) || 'Unknown' : '';
     }
 
     applyFilter(event: Event) {

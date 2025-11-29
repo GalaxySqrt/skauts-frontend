@@ -55,13 +55,14 @@
     }
 }
 
-.dark-theme .header {
+:host-context(.dark-theme) .header {
     background: theme.$gradient-hover-dark;
 }
 
 .filter-field {
     width: 100%;
     max-width: 400px;
+    margin-bottom: 16px;
 
     mat-form-field {
         transition: all theme.$transition-normal ease-in-out;
@@ -75,6 +76,241 @@
     }
 }
 
+// Tabs styling
+::ng-deep .mat-mdc-tab-group {
+    .mat-mdc-tab-header {
+        margin-bottom: 24px;
+        border-bottom: none;
+    }
+
+    .mat-mdc-tab-labels {
+        background: rgba(0, 0, 0, 0.03);
+        border-radius: 12px;
+        padding: 4px;
+        display: inline-flex;
+    }
+
+    .mat-mdc-tab {
+        min-width: 120px;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        opacity: 0.7;
+
+        &:hover {
+            background: rgba(0, 0, 0, 0.05);
+            opacity: 1;
+        }
+
+        &.mdc-tab--active {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            opacity: 1;
+
+            .mdc-tab__text-label {
+                color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+                font-weight: 600;
+            }
+        }
+    }
+
+    .mat-mdc-tab-indicator {
+        display: none; // Hide default indicator for pill look
+    }
+}
+
+:host-context(.dark-theme) ::ng-deep .mat-mdc-tab-group {
+    .mat-mdc-tab-labels {
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .mat-mdc-tab:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .mat-mdc-tab.mdc-tab--active {
+        background: #424242;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+        .mdc-tab__text-label {
+            color: mat.m2-get-color-from-palette(theme.$skauts-primary, 300);
+        }
+    }
+}
+
+
+// Cards View
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+    padding-bottom: 24px;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.player-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: theme.$shadow-md;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    &:hover {
+        transform: translateY(-8px);
+        box-shadow: theme.$shadow-xl;
+
+        .player-image-container img {
+            transform: scale(1.1);
+        }
+    }
+
+    .card-inner {
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 12px;
+
+        .player-role {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: mat.m2-get-color-from-palette(theme.$skauts-primary);
+            background: rgba(0, 121, 107, 0.1);
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .player-rating {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: #FFD700; // Gold for rating
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .player-image-container {
+        width: 100%;
+        height: 300px;
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 16px;
+        background: #f5f5f5;
+        position: relative;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+    }
+
+    .card-footer {
+        text-align: center;
+
+        .player-name {
+            margin: 0 0 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .player-stats {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            padding-top: 12px;
+
+            .stat {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                .label {
+                    font-size: 0.7rem;
+                    color: #757575;
+                    margin-bottom: 2px;
+                }
+
+                .value {
+                    font-weight: 700;
+                    color: #333;
+                }
+            }
+        }
+    }
+}
+
+:host-context(.dark-theme) .player-card {
+    background: #1e1e1e;
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+    &:hover {
+        background: #252525;
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .card-header .player-role {
+        background: rgba(128, 203, 196, 0.15); // Lighter teal for dark mode
+        color: #80cbc4;
+    }
+
+    .player-image-container {
+        background: #2c2c2c;
+
+        img {
+            opacity: 0.9; // Slightly dim images in dark mode
+        }
+    }
+
+    .card-footer {
+        .player-name {
+            color: rgba(255, 255, 255, 0.87);
+        }
+
+        .player-stats {
+            border-top-color: rgba(255, 255, 255, 0.1);
+
+            .stat {
+                .label {
+                    color: rgba(255, 255, 255, 0.6);
+                }
+
+                .value {
+                    color: rgba(255, 255, 255, 0.87);
+                }
+            }
+        }
+    }
+}
+
+.no-data {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 1.1rem;
+}
+
+:host-context(.dark-theme) .no-data {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+
 .table-container {
     overflow: auto;
     border-radius: 12px;
@@ -87,8 +323,9 @@
     }
 }
 
-.dark-theme .table-container {
-    background: rgba(33, 33, 33, 0.8);
+:host-context(.dark-theme) .table-container {
+    background: #1e1e1e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 table {
@@ -156,13 +393,17 @@ table {
     }
 }
 
-.dark-theme table {
+:host-context(.dark-theme) table {
     tbody tr {
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 
         &:hover {
-            background: theme.$gradient-hover-dark;
-            border-left-color: mat.m2-get-color-from-palette(theme.$skauts-primary, 300);
+            background: rgba(255, 255, 255, 0.05);
+            border-left-color: #80cbc4;
+        }
+
+        td {
+            color: rgba(255, 255, 255, 0.87);
         }
     }
 }
@@ -191,6 +432,6 @@ mat-spinner {
     }
 }
 
-.dark-theme .empty-state p {
+:host-context(.dark-theme) .empty-state p {
     color: rgba(255, 255, 255, 0.5);
 }

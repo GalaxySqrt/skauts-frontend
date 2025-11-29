@@ -10,7 +10,8 @@
 
             <mat-nav-list *ngIf="!isLoading && organizations.length > 0">
                 <a mat-list-item *ngFor="let org of organizations" (click)="selectOrg(org)">
-                    <mat-icon matListItemIcon>business</mat-icon>
+                    <img matListItemAvatar [src]="org.imagePath || 'assets/images/default-org.png'"
+                        alt="Organization Logo" onerror="this.src='assets/images/default-org.png'">
                     <span matListItemTitle>{{ org.name }}</span>
                 </a>
             </mat-nav-list>

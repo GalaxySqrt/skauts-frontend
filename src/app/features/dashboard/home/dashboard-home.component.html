@@ -1,0 +1,180 @@
+<div class="dashboard-container">
+    <!-- Header Section -->
+    <div class="dashboard-header" *ngIf="organization">
+        <div class="welcome-text">
+            <h1>{{ 'DASHBOARD.WELCOME' | translate }}, <span class="org-name">{{ organization.name }}</span>!</h1>
+            <p class="subtitle">{{ 'DASHBOARD.SUBTITLE' | translate }}</p>
+        </div>
+        <div class="org-logo" *ngIf="organization.imagePath">
+            <img [src]="organization.imagePath" alt="Organization Logo">
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="loading-container" *ngIf="loading">
+        <mat-spinner diameter="50"></mat-spinner>
+    </div>
+
+    <div class="dashboard-content" *ngIf="!loading">
+        <!-- Stats Cards Grid -->
+        <div class="stats-grid">
+
+            <!-- Players Card -->
+            <mat-card class="stat-card players-card">
+                <mat-card-content>
+                    <div class="stat-icon">
+                        <mat-icon>groups</mat-icon>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value">{{ totalPlayers }}</span>
+                        <span class="stat-label">{{ 'DASHBOARD.PLAYERS' | translate }}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Matches Card -->
+            <mat-card class="stat-card matches-card">
+                <mat-card-content>
+                    <div class="stat-icon">
+                        <mat-icon>sports_soccer</mat-icon>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value">{{ totalMatches }}</span>
+                        <span class="stat-label">{{ 'DASHBOARD.MATCHES' | translate }}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Championships Card -->
+            <mat-card class="stat-card championships-card">
+                <mat-card-content>
+                    <div class="stat-icon">
+                        <mat-icon>emoji_events</mat-icon>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value">{{ totalChampionships }}</span>
+                        <span class="stat-label">{{ 'DASHBOARD.CHAMPIONSHIPS' | translate }}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Total Goals Card -->
+            <mat-card class="stat-card goals-card">
+                <mat-card-content>
+                    <div class="stat-icon">
+                        <mat-icon>sports_soccer</mat-icon>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value">{{ totalGoals }}</span>
+                        <span class="stat-label">{{ 'DASHBOARD.TOTAL_GOALS' | translate }}</span>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <!-- Ranking Section -->
+        <div class="ranking-section">
+            <!-- Top Scorers -->
+            <mat-card class="ranking-card">
+                <mat-card-header>
+                    <mat-icon mat-card-avatar>stars</mat-icon>
+                    <mat-card-title>{{ 'DASHBOARD.TOP_SCORERS' | translate }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="loading-ranking" *ngIf="loadingRanking">
+                        <mat-spinner diameter="30"></mat-spinner>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table mat-table [dataSource]="topScorers" *ngIf="!loadingRanking && topScorers.length > 0"
+                            class="ranking-table">
+                            <!-- Rank Column -->
+                            <ng-container matColumnDef="rank">
+                                <th mat-header-cell *matHeaderCellDef> {{ 'DASHBOARD.RANK' | translate }} </th>
+                                <td mat-cell *matCellDef="let element; let i = index">
+                                    <div class="rank-badge" [ngClass]="'rank-' + (i + 1)">{{ i + 1 }}</div>
+                                </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef> {{ 'DASHBOARD.PLAYER' | translate }} </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div class="player-info">
+                                        <img [src]="element.player.imagePath || 'default_player.jpg'"
+                                            class="player-avatar" alt="Player">
+                                        <span>{{ element.player.name }}</span>
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <!-- Goals Column -->
+                            <ng-container matColumnDef="count">
+                                <th mat-header-cell *matHeaderCellDef> {{ 'DASHBOARD.GOALS' | translate }} </th>
+                                <td mat-cell *matCellDef="let element"> {{ element.goals }} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+
+                    <div class="no-data" *ngIf="!loadingRanking && topScorers.length === 0">
+                        <p>{{ 'DASHBOARD.NO_DATA' | translate }}</p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+
+            <!-- Top Assisters -->
+            <mat-card class="ranking-card">
+                <mat-card-header>
+                    <mat-icon mat-card-avatar>assistant</mat-icon>
+                    <mat-card-title>{{ 'DASHBOARD.TOP_ASSISTERS' | translate }}</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <div class="loading-ranking" *ngIf="loadingRanking">
+                        <mat-spinner diameter="30"></mat-spinner>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table mat-table [dataSource]="topAssisters" *ngIf="!loadingRanking && topAssisters.length > 0"
+                            class="ranking-table">
+                            <!-- Rank Column -->
+                            <ng-container matColumnDef="rank">
+                                <th mat-header-cell *matHeaderCellDef> {{ 'DASHBOARD.RANK' | translate }} </th>
+                                <td mat-cell *matCellDef="let element; let i = index">
+                                    <div class="rank-badge" [ngClass]="'rank-' + (i + 1)">{{ i + 1 }}</div>
+                                </td>
+                            </ng-container>
+
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="name">
+                                <th mat-header-cell *matHeaderCellDef> {{ 'DASHBOARD.PLAYER' | translate }} </th>
+                                <td mat-cell *matCellDef="let element">
+                                    <div class="player-info">
+                                        <img [src]="element.player.imagePath || 'default_player.jpg'"
+                                            class="player-avatar" alt="Player">
+                                        <span>{{ element.player.name }}</span>
+                                    </div>
+                                </td>
+                            </ng-container>
+
+                            <!-- Count Column -->
+                            <ng-container matColumnDef="count">
+                                <th mat-header-cell *matHeaderCellDef> {{ 'DASHBOARD.ASSISTS' | translate }} </th>
+                                <td mat-cell *matCellDef="let element"> {{ element.goals }} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+                    </div>
+
+                    <div class="no-data" *ngIf="!loadingRanking && topAssisters.length === 0">
+                        <p>{{ 'DASHBOARD.NO_DATA' | translate }}</p>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>

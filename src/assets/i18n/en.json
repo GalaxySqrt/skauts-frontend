@@ -15,7 +15,8 @@
         "SEARCH": "Search",
         "ACTIONS": "Actions",
         "CREATE_NEW": "Add",
-        "FILTER": "Filter",
+        "CREATED_AT": "Created At",
+        "FILTER": "Search",
         "NAME": "Name",
         "DESCRIPTION": "Description",
         "DATE": "Date",
@@ -42,7 +43,24 @@
         "REQUIRED_FIELD": "This field is required",
         "INVALID_EMAIL": "Please enter a valid email address",
         "MIN_LENGTH": "Must be at least {{value}} characters",
-        "SEARCH_PLACEHOLDER": "Ex. Search..."
+        "SEARCH_PLACEHOLDER": "Ex. Search...",
+        "PREVIEW": "Preview",
+        "UPDATE": "Update"
+    },
+    "DASHBOARD": {
+        "WELCOME": "Welcome",
+        "SUBTITLE": "Here is your organization summary",
+        "MATCHES": "Matches",
+        "CHAMPIONSHIPS": "Championships",
+        "PLAYERS": "Players",
+        "TOP_SCORERS": "Top Scorers",
+        "TOP_ASSISTERS": "Top Assisters",
+        "RANK": "Rank",
+        "PLAYER": "Player",
+        "GOALS": "Goals",
+        "ASSISTS": "Assists",
+        "TOTAL_GOALS": "Total Goals",
+        "NO_DATA": "No data available"
     },
     "LANGUAGES": {
         "PT": "Portuguese",
@@ -74,15 +92,36 @@
         "TITLE": "Championships",
         "DETAIL_TITLE": "Championship Details",
         "FORM_TITLE_ADD": "Add Championship",
-        "FORM_TITLE_EDIT": "Edit Championship"
+        "FORM_TITLE_EDIT": "Edit Championship",
+        "NAME_PLACEHOLDER": "Ex. Futsal Championship",
+        "IMAGE_PLACEHOLDER": "Logo URL",
+        "IMAGE_PATH": "Image Path",
+        "START_DATE": "Start Date",
+        "END_DATE": "End Date",
+        "STATUS": "Status",
+        "STATUS_ACTIVE": "Active",
+        "STATUS_INACTIVE": "Inactive"
     },
     "TEAMS": {
         "TITLE": "Teams",
         "DETAIL_TITLE": "Team Details",
+        "FILTER_BY_DATE": "Filter by Date",
         "FORM_TITLE_ADD": "Add Team",
         "FORM_TITLE_EDIT": "Edit Team",
         "FOUNDED": "Founded",
-        "WEBSITE": "Website"
+        "WEBSITE": "Website",
+        "TEAM_INFO": "Team Information",
+        "ROSTER": "Roster",
+        "ROSTER_MANAGEMENT": "Roster Management",
+        "ADD_PLAYER": "Add Player",
+        "CURRENT_PLAYERS": "Current Players",
+        "AVAILABLE_PLAYERS": "Available Players",
+        "JOIN_DATE": "Join Date",
+        "NO_PLAYERS": "No players in the team",
+        "SELECT_PLAYER": "Select a player",
+        "REMOVE_PLAYER": "Remove player",
+        "CONFIRM_REMOVE": "Are you sure you want to remove this player from the team?",
+        "SAVE_TEAM_FIRST": "Save the team first to add players"
     },
     "PLAYERS": {
         "TITLE": "Players",
@@ -92,7 +131,15 @@
         "POSITION": "Position",
         "NUMBER": "Number",
         "BIRTHDATE": "Birthdate",
-        "NATIONALITY": "Nationality"
+        "NATIONALITY": "Nationality",
+        "PERSONAL_INFO": "Personal Information",
+        "PLAYER_DETAILS": "Player Details",
+        "PLAYER_IMAGE": "Player Image",
+        "SKILL": "Skill",
+        "PHYSIQUE": "Physique",
+        "IMAGE_HINT": "Paste the player's image URL",
+        "NO_IMAGE_PREVIEW": "No image to preview",
+        "DESCRIPTION": "Description"
     },
     "PRIZES": {
         "PLAYER": "Player",
@@ -100,6 +147,13 @@
         "RECEIVE_DATE": "Date",
         "ADD_PRIZE": "Add Prize",
         "EDIT_PRIZE": "Edit Prize"
+    },
+    "PLAYERS_PRIZES": {
+        "ADD_PRIZE": "Add Prize",
+        "EDIT_PRIZE": "Edit Prize",
+        "PLAYER": "Player",
+        "PRIZE_TYPE": "Prize Type",
+        "RECEIVE_DATE": "Date"
     },
     "MATCHES": {
         "TITLE": "Matches",
@@ -112,19 +166,52 @@
         "LOCATION": "Location",
         "ROUND": "Round",
         "TEAM_A": "Team A",
-        "TEAM_B": "Team B"
+        "TEAM_B": "Team B",
+        "NONE_FRIENDLY": "None (Friendly)",
+        "TIME": "Time",
+        "STATUS": "Status",
+        "STATUS_ACTIVE": "Active",
+        "STATUS_INACTIVE": "Inactive",
+        "EVENT_TYPE": "Event Type",
+        "EVENT_TYPE_PLACEHOLDER": "Ex. Match",
+        "EVENT_TYPE_DESCRIPTION": "Event Description",
+        "EVENT_TYPE_DESCRIPTION_PLACEHOLDER": "Ex. Futsal Match",
+        "PLAYER": "Player",
+        "DETAILS_TITLE": "Match Details",
+        "EVENTS_TITLE": "Events",
+        "EVENTS_DETAIL_TITLE": "Event Details",
+        "NO_EVENTS": "No events added",
+        "GOALS_TEAM_A": "Team A Goals",
+        "GOALS_TEAM_B": "Team B Goals",
+        "SCOREBOARD": "Scoreboard",
+        "MINUTE": "Minute",
+        "VS": "vs",
+        "ADD_EVENT": "Add Event",
+        "EDIT_EVENT": "Edit Event",
+        "DELETE_EVENT": "Delete Event",
+        "EVENT": "Event",
+        "EVENT_TIME": "Event Time",
+        "SELECT_PLAYER": "Select a player",
+        "SELECT_EVENT_TYPE": "Select event type",
+        "SAVE_MATCH_FIRST": "Save the match first to add events",
+        "CONFIRM_DELETE_EVENT": "Are you sure you want to delete this event?"
     },
     "ORGANIZATIONS": {
         "TITLE": "Organizations",
         "DETAIL_TITLE": "Organization Details",
         "FORM_TITLE_ADD": "Add Organization",
-        "FORM_TITLE_EDIT": "Edit Organization"
+        "FORM_TITLE_EDIT": "Edit Organization",
+        "NAME_PLACEHOLDER": "Ex. My Club",
+        "IMAGE_PLACEHOLDER": "Logo URL",
+        "IMAGE_PATH": "Image Path",
+        "SWITCH": "Switch"
     },
     "EVENT_TYPES": {
         "TITLE": "Event Types",
         "DETAIL_TITLE": "Event Type Details",
         "FORM_TITLE_ADD": "Add Event Type",
         "FORM_TITLE_EDIT": "Edit Event Type",
-        "ICON": "Icon"
+        "ICON": "Icon",
+        "NAME_PLACEHOLDER": "Ex. Goal"
     }
 }

@@ -17,7 +17,7 @@
             <!-- Date Column -->
             <ng-container matColumnDef="date">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> {{ 'COMMON.DATE' | translate }} </th>
-                <td mat-cell *matCellDef="let row"> {{row.date | date:'medium'}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.date | date:'dd/MM/yyyy'}} </td>
             </ng-container>
 
             <!-- Team A Column -->

@@ -10,6 +10,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatTabsModule } from '@angular/material/tabs';
 import { PlayerService } from '../../../core/services/player.service';
 import { RoleService } from '../../../core/services/role.service';
 import { AuthService } from '../../../core/services/auth.service';
@@ -33,7 +34,9 @@ import { TranslateModule } from '@ngx-translate/core';
         MatSnackBarModule,
         MatFormFieldModule,
         MatInputModule,
-        TranslateModule
+        MatInputModule,
+        TranslateModule,
+        MatTabsModule
     ],
     templateUrl: './player-list.component.html',
     styleUrls: ['./player-list.component.scss']

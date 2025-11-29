@@ -1,5 +1,5 @@
 @use '@angular/material' as mat;
-@use '../../../../_theme-colors' as theme;
+@use '../../../../theme-colors' as theme;
 
 .list-container {
     padding: 24px;
@@ -17,14 +17,19 @@
     box-shadow: theme.$shadow-sm;
     animation: fadeInDown 0.5s ease-out;
 
-    h1,
-    h2 {
+    h1 {
         margin: 0;
         background: theme.$gradient-primary;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
         font-weight: 700;
+        font-size: 24px;
+    }
+
+    div {
+        display: flex;
+        gap: 8px;
     }
 
     button {
@@ -47,6 +52,7 @@
 
         mat-icon {
             transition: transform theme.$transition-fast ease-in-out;
+            margin-right: 4px;
         }
 
         &:hover mat-icon {
@@ -61,18 +67,7 @@
 
 .filter-field {
     width: 100%;
-    max-width: 400px;
-
-    mat-form-field {
-        transition: all theme.$transition-normal ease-in-out;
-
-        &:focus-within {
-            .mat-mdc-text-field-wrapper {
-                box-shadow: 0 0 0 2px rgba(0, 121, 107, 0.2);
-                border-radius: 4px;
-            }
-        }
-    }
+    margin-bottom: 24px;
 }
 
 .table-container {
@@ -114,7 +109,6 @@ table {
         tr {
             transition: all theme.$transition-normal ease-in-out;
             border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-            cursor: pointer;
 
             &:hover {
                 background: theme.$gradient-hover-light;
@@ -127,7 +121,6 @@ table {
                 padding: 16px;
                 transition: all theme.$transition-fast ease-in-out;
 
-                // Action buttons
                 button {
                     transition: all theme.$transition-normal ease-in-out;
                     border-radius: 8px;
@@ -135,16 +128,6 @@ table {
                     &:hover {
                         transform: scale(1.1);
                         box-shadow: theme.$shadow-md;
-                    }
-
-                    &.edit-button:hover {
-                        background: rgba(0, 121, 107, 0.1);
-                        color: mat.m2-get-color-from-palette(theme.$skauts-primary);
-                    }
-
-                    &.delete-button:hover {
-                        background: rgba(244, 67, 54, 0.1);
-                        color: #f44336;
                     }
                 }
             }
@@ -164,33 +147,74 @@ table {
             background: theme.$gradient-hover-dark;
             border-left-color: mat.m2-get-color-from-palette(theme.$skauts-primary, 300);
         }
+
+        td {
+            color: rgba(255, 255, 255, 0.87);
+        }
     }
 }
 
-// Loading and empty states
-mat-spinner {
-    margin: 40px auto;
+.org-logo-small {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    vertical-align: middle;
+    border: 2px solid white;
+    box-shadow: theme.$shadow-sm;
 }
 
-.empty-state {
-    text-align: center;
-    padding: 60px 20px;
-    animation: fadeIn 0.5s ease-out;
-
-    mat-icon {
-        font-size: 64px;
-        width: 64px;
-        height: 64px;
-        opacity: 0.3;
-        margin-bottom: 16px;
+// Animations
+@keyframes fadeIn {
+    from {
+        opacity: 0;
     }
 
-    p {
-        color: rgba(0, 0, 0, 0.5);
-        font-size: 1.1rem;
+    to {
+        opacity: 1;
     }
 }
 
-.dark-theme .empty-state p {
-    color: rgba(255, 255, 255, 0.5);
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+
+        div {
+            width: 100%;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        button {
+            width: 100%;
+        }
+    }
 }

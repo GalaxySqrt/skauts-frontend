@@ -8,6 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { PlayerService } from '../../../core/services/player.service';
 import { RoleService } from '../../../core/services/role.service';
 import { AuthService } from '../../../core/services/auth.service';
@@ -27,6 +28,7 @@ import { TranslateModule } from '@ngx-translate/core';
         MatDatepickerModule,
         MatNativeDateModule,
         MatButtonModule,
+        MatIconModule,
         TranslateModule
     ],
     templateUrl: './player-form.component.html',
@@ -37,6 +39,7 @@ export class PlayerFormComponent implements OnInit {
     isEditMode = false;
     isLoading = false;
     roles: RoleDto[] = [];
+    imagePreview: string | null = null;
 
     constructor(
         private fb: FormBuilder,
@@ -72,6 +75,10 @@ export class PlayerFormComponent implements OnInit {
                 birthDate: this.data.birthDate,
                 imagePath: this.data.imagePath
             });
+            // Set image preview if imagePath exists
+            if (this.data.imagePath) {
+                this.imagePreview = this.data.imagePath;
+            }
         }
     }
 
@@ -123,6 +130,20 @@ export class PlayerFormComponent implements OnInit {
                 }
             });
         }
+    }
+
+    onImagePathChange() {
+        const imagePath = this.form.get('imagePath')?.value;
+        this.imagePreview = imagePath && imagePath.trim() !== '' ? imagePath : null;
+    }
+
+    onImageError() {
+        this.imagePreview = null;
+    }
+
+    getRoleAcronym(roleId: number): string {
+        const role = this.roles.find(r => r.id === roleId);
+        return role ? role.acronym || '' : '';
     }
 
     private formatDate(date: Date | string): string | null {

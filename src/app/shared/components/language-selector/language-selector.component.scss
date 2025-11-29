@@ -131,13 +131,18 @@
     }
 }
 
-.dark-theme ::ng-deep .language-menu-panel {
-    background: theme.$gradient-card-dark;
+::ng-deep .dark-theme .language-menu-panel {
+    background: theme.$gradient-card-dark !important;
     border-color: rgba(38, 166, 154, 0.2);
+    color: #fff;
 
     .language-item {
         &::before {
             background: theme.$gradient-hover-dark;
+        }
+
+        .lang-label {
+            color: #fff;
         }
     }
 }
@@ -160,8 +165,20 @@
 
 .language-item:hover .lang-label {
     background: theme.$gradient-primary;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
+    // background-clip: text;
+    color: theme.$color-success; // Fallback or simpler color for hover to ensure visibility
     font-weight: 600;
+}
+
+// Special override for gradient text on hover if supported
+@supports (-webkit-background-clip: text) {
+    .language-item:hover .lang-label {
+        background: theme.$gradient-primary;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        color: transparent; // Ensure fallback color doesn't show through
+    }
 }

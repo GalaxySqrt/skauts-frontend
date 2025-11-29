@@ -14,6 +14,7 @@
     mat-form-field {
         width: 100%;
         transition: all theme.$transition-normal ease-in-out;
+        margin-top: 20px;
 
         &:focus-within {
             .mat-mdc-text-field-wrapper {
