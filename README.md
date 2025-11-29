@@ -11,6 +11,7 @@ Skauts Frontend é uma aplicação web desenvolvida em Angular para gerenciament
 ![RxJS](https://img.shields.io/badge/rxjs-%23B7178C.svg?style=for-the-badge&logo=reactivex&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
 ![SCSS](https://img.shields.io/badge/SASS-hotpink.svg?style=for-the-badge&logo=SASS&logoColor=white)
+![ngx-translate](https://img.shields.io/badge/ngx--translate-%235C6AC4.svg?style=for-the-badge&logo=google-translate&logoColor=white)
 
 ## ✨ Funcionalidades
 
@@ -19,10 +20,12 @@ A aplicação está organizada nos seguintes módulos principais:
 - 🔐 **Auth**: Gerenciamento de autenticação e seleção de organização.
 - 🏆 **Championships**: Gestão de campeonatos.
 - 📊 **Dashboard**: Painel principal com visão geral.
-- 📅 **Events**: Registro e visualização de eventos de partidas.
+- 📅 **Events**: Gestão de tipos de eventos e registro de ocorrências em partidas.
+- 🌐 **Internationalization**: Suporte completo a múltiplos idiomas (Português, Inglês e Espanhol).
 - ⚔️ **Matches**: Gerenciamento de partidas.
 - 🏢 **Organizations**: Administração de organizações.
 - 🏃 **Players**: Cadastro e gestão de jogadores.
+- 🎁 **Players Prizes**: Gerenciamento de prêmios e conquistas dos jogadores.
 - 👥 **Teams**: Gerenciamento de times.
 
 ## 📋 Pré-requisitos
