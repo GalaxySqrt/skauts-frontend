@@ -1,4 +1,4 @@
-# Skauts Frontend
+# ⚽ Skauts Frontend ⚽
 
 Skauts Frontend é uma aplicação web desenvolvida em Angular para gerenciamento de campeonatos, times, jogadores e eventos esportivos.
 
