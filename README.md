@@ -1,7 +1,5 @@
 # Skauts Frontend
 
-![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow?style=for-the-badge)
-
 Skauts Frontend é uma aplicação web desenvolvida em Angular para gerenciamento de campeonatos, times, jogadores e eventos esportivos.
 
 ## 🚀 Tecnologias Utilizadas
